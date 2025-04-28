@@ -17,8 +17,12 @@ add_action(
 			function(){
 				?>
 				<h1>Daily Pleroma</h1>
-					<h2>via RSS feed settings</h2>
-						<?php build_post_main_content();
+					<h2>RSS feed settings</h2>
+						<label>RSS URL</label>
+						<input type="text" name="feed_url" id="feed-url"/>
+						<button>テスト</button>
+						<?php 
+							echo test_build_yesterday_digest();
 						?>
 					<h2>Upload actor.json</h2>
 				<?php
@@ -27,3 +31,10 @@ add_action(
 	},
 	99
 );
+
+function test_build_yesterday_digest() {
+	$all_items = parse_pleroma_atom( 'https://autumnsky.jp/users/akiya/feed.atom' );
+	$yesterday = new DateTime( '-1 day' );
+
+	return build_post_main_content( $yesterday, $all_items );
+}
