@@ -18,7 +18,7 @@ add_action(
 				?>
 				<h1>Daily Pleroma</h1>
 					<h2>via RSS feed settings</h2>
-						<?php parse_pleroma_atom( 'https://autumnsky.jp/users/akiya/feed.atom' );
+						<?php build_post_main_content();
 						?>
 					<h2>Upload actor.json</h2>
 				<?php
