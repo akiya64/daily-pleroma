@@ -29,15 +29,11 @@ function parse_pleroma_atom( $url ){
 	return $items;
 }
 
-function build_post_main_content( $date = null ){
+function build_post_main_content( DateTime $date, $all_items = array() ){
 
-	$all_items = parse_pleroma_atom( 'https://autumnsky.jp/users/akiya/feed.atom' );
-	$yesterday = new DateTime( '-1 day' );
-
-	$items = array_filter( $all_items, function( $k ) use ( $yesterday ){
-		return str_contains( $k, $yesterday->format( 'Y-m-d' ) );
+	$items = array_filter( $all_items, function( $k ) use ( $date ){
+		return str_contains( $k, $date->format( 'Y-m-d' ) );
 	}, ARRAY_FILTER_USE_KEY );
-
 
 	$content = '';
 	foreach( $items as $time => $item ){
@@ -48,5 +44,5 @@ function build_post_main_content( $date = null ){
 			EOF;
 	}
 
-	echo($content);
+	return $content;
 }
