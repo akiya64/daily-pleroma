@@ -36,5 +36,5 @@ function test_build_yesterday_digest() {
 	$all_items = parse_pleroma_atom( 'https://autumnsky.jp/users/akiya/feed.atom' );
 	$yesterday = new DateTime( '-1 day' );
 
-	return build_post_main_content( $yesterday, $all_items );
+	return build_main_content( $yesterday, $all_items );
 }

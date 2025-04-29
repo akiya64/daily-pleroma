@@ -2,7 +2,7 @@
 /**
  * Parse RSS
  *
- * @package daily-pleroma.php
+ * @package daily-pleroma
  */
 
 function parse_pleroma_atom( $url ){
@@ -29,7 +29,7 @@ function parse_pleroma_atom( $url ){
 	return $items;
 }
 
-function build_post_main_content( DateTime $date, $all_items = array() ){
+function build_main_content( DateTime $date, $all_items = array() ){
 
 	$items = array_filter( $all_items, function( $k ) use ( $date ){
 		return str_contains( $k, $date->format( 'Y-m-d' ) );
