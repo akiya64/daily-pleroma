@@ -18,11 +18,19 @@ add_action(
 				?>
 				<h1>Daily Pleroma</h1>
 					<h2>RSS feed settings</h2>
-						<label>RSS URL</label>
-						<input type="text" name="feed_url" id="feed-url"/>
-						<button>テスト</button>
-						<?php 
-							echo test_build_yesterday_digest();
+						<form method="post">
+							<input type="text" name="rss-url" value="<?php echo RSS_URL; ?>">
+							<input type="submit" value="保存">
+				</form>
+				<hr>
+						<form method="post">
+							<input type="hidden" name="fetch-test" value="test">
+							<input type="submit" value="RSS読み取りテスト">
+						</form>
+						<?php
+							if( isset( $_POST['fetch-test'] ) && 'test' === $_POST['fetch-test'] ){
+								echo build_yesterday_digest();
+							}
 						?>
 					<h2>Upload actor.json</h2>
 				<?php
