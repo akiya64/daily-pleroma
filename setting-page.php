@@ -5,6 +5,8 @@
  * @package daily-pleroma.php
  */
 
+define( 'RSS_URL', 'https://autumnsky.jp/users/akiya/feed.atom' );
+
 add_action(
 	'admin_menu',
 	function(){
@@ -40,8 +42,10 @@ add_action(
 	99
 );
 
-function test_build_yesterday_digest() {
-	$all_items = parse_pleroma_atom( 'https://autumnsky.jp/users/akiya/feed.atom' );
+
+
+function build_yesterday_digest() {
+	$all_items = parse_pleroma_atom( RSS_URL );
 	$yesterday = new DateTime( '-1 day' );
 
 	return build_main_content( $yesterday, $all_items );
