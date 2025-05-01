@@ -50,3 +50,13 @@ function build_yesterday_digest() {
 
 	return build_main_content( $yesterday, $all_items );
 }
+
+add_action( 'insert_yesterday_digest', function(){
+	error_log('scheduled insert');
+	wp_insert_post( array(
+		'post_title' => 'From akkoma',
+		'post_content' => build_yesterday_digest()
+	) );
+});
+
+wp_schedule_event( strtotime("now"), 'hourly', 'insert_yesterday_digest' );
