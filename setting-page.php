@@ -50,4 +50,6 @@ add_action( 'insert_yesterday_digest', function(){
 	) );
 });
 
-wp_schedule_event( strtotime("now"), 'hourly', 'insert_yesterday_digest' );
+if( ! wp_next_scheduled( 'insert_yesterday_digest' ) ){
+	wp_schedule_event( strtotime("now"), 'hourly', 'insert_yesterday_digest' );
+}
