@@ -12,3 +12,4 @@
 
 require_once __DIR__ . '/setting-page.php';
 require_once __DIR__ . '/build-post.php';
+require_once __DIR__ . '/parser.php';

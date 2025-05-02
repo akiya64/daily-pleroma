@@ -32,7 +32,11 @@ add_action(
 						</form>
 						<?php
 							if( isset( $_POST['fetch-test'] ) && 'test' === $_POST['fetch-test'] ){
-								echo build_yesterday_digest();
+
+								$yesterday = new DateTime( '-1 day' );
+								$all_items = parse_pleroma_atom( RSS_URL );
+
+								echo build_daily_digest_post( $yesterday, $all_items )['post_content'];
 							}
 						?>
 					<h2>Upload actor.json</h2>
@@ -44,11 +48,9 @@ add_action(
 );
 
 add_action( 'insert_yesterday_digest', function(){
-	error_log('scheduled insert');
-	wp_insert_post( array(
-		'post_title' => 'From akkoma',
-		'post_content' => build_yesterday_digest()
-	) );
+	$yesterday = new DateTime( '-1 day' );
+	$all_items = parse_pleroma_atom( RSS_URL );
+	wp_insert_post( build_daily_digest_post( $yesterday, $all_items ) );
 });
 
 if( ! wp_next_scheduled( 'insert_yesterday_digest' ) ){

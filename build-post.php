@@ -1,33 +1,9 @@
 <?php
 /**
- * Parse RSS
+ * Insert post
  *
  * @package daily-pleroma
  */
-
-function parse_pleroma_atom( $url ){
-	$atom = new SimpleXMLElement( $url, LIBXML_COMPACT | LIBXML_NOERROR, true );
-
-	foreach( $atom->entry as $entry ){
-		$date = new DateTime( $entry->published );
-		$date->setTimeZone(new DateTimeZone('Asia/Tokyo'));
-		$key = $date->format( 'c' );
-		
-		foreach ( $entry->link as $link ){
-			if( 'text/html' === (string) $link['type'] ){
-				$url = (string) $link['href'];
-				break;
-			};
-		}
-
-		$items[ $key ] = array(
-			'link' => $url,
-			'content' => (string) $entry->content,
-		);
-	}
-
-	return $items;
-}
 
 function build_main_content( DateTime $date, $all_items = array() ){
 
@@ -47,10 +23,15 @@ function build_main_content( DateTime $date, $all_items = array() ){
 	return $content;
 }
 
-function build_yesterday_digest() {
+function build_daily_digest_post( DateTime $date, $all_items = array() ) {
 	$all_items = parse_pleroma_atom( RSS_URL );
-	$yesterday = new DateTime( '-1 day' );
+	$date_string = $date->format( 'Y-m-d' );
 
-	return build_main_content( $yesterday, $all_items );
+	return array(
+		'post_name' => 'from_akkoma_' . $date_string,
+		'post_title' => 'From akkoma ' . $date_string,
+		'post_content' => build_main_content( $date, $all_items ),
+		'post_status' => 'published',
+	);
 }
 
