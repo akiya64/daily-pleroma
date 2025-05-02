@@ -6,6 +6,8 @@
  */
 
 define( 'RSS_URL', 'https://autumnsky.jp/users/akiya/feed.atom' );
+define( 'EST', '02:00' );
+define( 'CATEGORY', 'akkoma' );
 
 add_action(
 	'admin_menu',
