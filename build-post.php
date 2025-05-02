@@ -46,3 +46,11 @@ function build_main_content( DateTime $date, $all_items = array() ){
 
 	return $content;
 }
+
+function build_yesterday_digest() {
+	$all_items = parse_pleroma_atom( RSS_URL );
+	$yesterday = new DateTime( '-1 day' );
+
+	return build_main_content( $yesterday, $all_items );
+}
+

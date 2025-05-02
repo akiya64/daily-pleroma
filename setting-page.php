@@ -42,15 +42,6 @@ add_action(
 	99
 );
 
-
-
-function build_yesterday_digest() {
-	$all_items = parse_pleroma_atom( RSS_URL );
-	$yesterday = new DateTime( '-1 day' );
-
-	return build_main_content( $yesterday, $all_items );
-}
-
 add_action( 'insert_yesterday_digest', function(){
 	error_log('scheduled insert');
 	wp_insert_post( array(
