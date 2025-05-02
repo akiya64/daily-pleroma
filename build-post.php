@@ -11,6 +11,8 @@ function build_main_content( DateTime $date, $all_items = array() ){
 		return str_contains( $k, $date->format( 'Y-m-d' ) );
 	}, ARRAY_FILTER_USE_KEY );
 
+	ksort( $items );
+
 	$content = '';
 	foreach( $items as $time => $item ){
 		$content .= <<< EOF
