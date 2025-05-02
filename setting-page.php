@@ -23,8 +23,7 @@ add_action(
 						<form method="post">
 							<input type="text" name="rss-url" value="<?php echo RSS_URL; ?>">
 							<input type="submit" value="保存">
-				</form>
-				<hr>
+						</form>
 						<form method="post">
 							<input type="hidden" name="fetch-test" value="test">
 							<input type="submit" value="RSS読み取りテスト">
