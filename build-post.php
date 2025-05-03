@@ -33,7 +33,7 @@ function build_daily_digest_post( DateTime $date, $all_items = array() ) {
 		'post_name' => 'from_akkoma_' . $date_string,
 		'post_title' => 'From akkoma ' . $date_string,
 		'post_content' => build_main_content( $date, $all_items ),
-		'post_status' => 'published',
+		'post_status' => 'publish',
 	);
 }
 
