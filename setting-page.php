@@ -47,12 +47,14 @@ add_action(
 	99
 );
 
-add_action( 'insert_yesterday_digest', function(){
+function insert_yesterday_digest(){
 	$yesterday = new DateTime( '-1 day' );
 	$all_items = parse_pleroma_atom( RSS_URL );
 	wp_insert_post( build_daily_digest_post( $yesterday, $all_items ) );
-});
+};
+
+add_action( 'insert_yesterday_digest_hook', 'insert_yesterday_digest' );
 
 if( ! wp_next_scheduled( 'insert_yesterday_digest' ) ){
-	wp_schedule_event( strtotime("now"), 'hourly', 'insert_yesterday_digest' );
+	wp_schedule_event( strtotime("now"), 'hourly', 'insert_yesterday_digest_hook' );
 }
