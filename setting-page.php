@@ -49,9 +49,10 @@ add_action(
 						update_option( 'digest_category', $_POST['cat'] );
 					}
 					if( isset( $_POST['post-est'] ) ){
-						$date = date_create_from_format( 'G:i', $_POST['post-est'], wp_timezone() ); 
+						update_option( 'est_daily_post', $_POST['post-est'] );
+
+						$date = date_create_from_format( 'G:i', $_POST['post-est'], wp_timezone() );
 						$date->setTimezone(( new DateTimeZone('UTC')));
-						update_option( 'est_daily_post', $date->getTimestamp() );
 						add_daily_digest_schedule( $date->getTimestamp() );
 					}
 			}
