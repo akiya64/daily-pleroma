@@ -23,7 +23,7 @@ add_action(
 					<h2>RSS feed settings</h2>
 						<form method="post">
 							<label>RSS URL: <input type="text" name="rss-url" value="<?php echo RSS_URL; ?>"></label><br>
-							<label>投稿時刻: <input type="time" name="est-time" value=""></label><br>
+							<label>投稿時刻: <input type="time" name="post-est" value=""></label><br>
 							<label>カテゴリー: <?php wp_dropdown_categories( array( 'hide_empty' => true ) ); ?></label><br>
 							<label>投稿者: <?php wp_dropdown_users(); ?></label><br>
 							<input type="submit" value="保存">
@@ -48,6 +48,12 @@ add_action(
 					if( isset( $_POST['cat'] ) && intval( $_POST['cat'] ) ){
 						update_option( 'digest_category', $_POST['cat'] );
 					}
+					if( isset( $_POST['post-est'] ) ){
+						$date = date_create_from_format( 'G:i', $_POST['post-est'], wp_timezone() ); 
+						$date->setTimezone(( new DateTimeZone('UTC')));
+						update_option( 'est_daily_post', $date->getTimestamp() );
+						add_daily_digest_schedule( $date->getTimestamp() );
+					}
 			}
 		);
 	},
@@ -62,6 +68,21 @@ function insert_yesterday_digest(){
 
 add_action( 'insert_yesterday_digest_hook', 'insert_yesterday_digest' );
 
-if( ! wp_next_scheduled( 'insert_yesterday_digest' ) ){
-	wp_schedule_event( strtotime("now"), 'hourly', 'insert_yesterday_digest_hook' );
+function add_daily_digest_schedule( int $est ){
+
+	$next = wp_get_scheduled_event( 'insert_yesterday_digest_hook' );
+
+	if( $next ){
+		// 時刻変更.
+		$next_date = date( "H:m", $next->timestamp );
+		$est_date = date( "H:m", $est );
+
+		if( $next_date !== $est_date ){
+			wp_reschedule_event( $est, 'daily', 'insert_yesterday_digest_hook' );
+		}
+
+	} else {
+		// 新規登録.
+		wp_schedule_event( $est, 'daily', 'insert_yesterday_digest_hook' );
+	}
 }
