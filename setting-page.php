@@ -81,8 +81,8 @@ function add_daily_digest_schedule( int $est ){
 
 	if( $next ){
 		// 時刻変更.
-		$next_date = date( "H:m", $next->timestamp );
-		$est_date = date( "H:m", $est );
+		$next_date = date( "H:i", $next->timestamp );
+		$est_date = date( "H:i", $est );
 
 		if( $next_date !== $est_date ){
 			wp_reschedule_event( $est, 'daily', 'insert_yesterday_digest_hook' );
