@@ -26,7 +26,7 @@ function build_main_content( DateTime $date, $all_items = array() ){
 }
 
 function build_daily_digest_post( DateTime $date, $all_items = array() ) {
-	$all_items = parse_pleroma_atom( RSS_URL );
+	$all_items = parse_pleroma_atom( get_option( 'rss_url' ) );
 	$date_string = $date->format( 'Y-m-d' );
 
 	$main_content = build_main_content( $date, $all_items );
