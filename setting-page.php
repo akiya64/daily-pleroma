@@ -69,7 +69,10 @@ add_action(
 
 function insert_yesterday_digest(){
 	$yesterday = new DateTime( '-1 day' );
-	$all_items = parse_pleroma_atom( RSS_URL );
+
+	if( is_digest_posted( $yesterday ) ) return;
+
+	$all_items = parse_pleroma_atom( get_option( 'rss_url') );
 	wp_insert_post( build_daily_digest_post( $yesterday, $all_items ) );
 };
 
@@ -92,4 +95,16 @@ function add_daily_digest_schedule( int $est ){
 		// 新規登録.
 		wp_schedule_event( $est, 'daily', 'insert_yesterday_digest_hook' );
 	}
+}
+
+function is_digest_posted( DateTime $date ){
+	$posts = get_posts( array(
+		'category' => get_option( 'digest_cat' ),
+		'date_query' => array(array (
+			'year' => $date->format('Y'),
+			'month' => $date->format('m'),
+			'day' => $date->format('d'),
+		)))
+	);
+	return $posts ? false : true;
 }
