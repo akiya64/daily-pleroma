@@ -58,7 +58,7 @@ add_action(
 						update_option( 'est_daily_post', $_POST['post-est'] );
 
 						$date = date_create_from_format( 'H:i', $_POST['post-est'], wp_timezone() );
-						$date->setTimezone(( new DateTimeZone('UTC')));
+						$date->setTimezone( new DateTimeZone('UTC'));
 						add_daily_digest_schedule( $date->getTimestamp() );
 					}
 			}
