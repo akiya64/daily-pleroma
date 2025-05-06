@@ -39,7 +39,7 @@ add_action(
 				<?php
 					if( isset( $_POST['fetch-test'] ) && 'test' === $_POST['fetch-test'] ){
 
-						$yesterday = new DateTime( '-1 day' );
+						$yesterday = new DateTime( '-1 day', wp_timezone() );
 						$all_items = parse_pleroma_atom( $url );
 
 						var_dump( build_daily_digest_post( $yesterday, $all_items ) );
@@ -68,7 +68,7 @@ add_action(
 );
 
 function insert_yesterday_digest(){
-	$yesterday = new DateTime( '-1 day' );
+	$yesterday = new DateTime( '-1 day', wp_timezone() );
 
 	if( is_digest_posted( $yesterday ) ) return;
 
