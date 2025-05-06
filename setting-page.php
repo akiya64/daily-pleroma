@@ -41,8 +41,10 @@ add_action(
 
 						$yesterday = new DateTime( '-1 day', wp_timezone() );
 						$all_items = parse_pleroma_atom( $url );
-
+						var_dump( $yesterday );
 						var_dump( build_daily_digest_post( $yesterday, $all_items ) );
+
+						var_dump( exists_digest_post( $yesterday ) );
 					}
 
 					if( isset( $_POST['rss-url'] ) && $_POST['rss-url'] ){
@@ -70,7 +72,7 @@ add_action(
 function insert_yesterday_digest(){
 	$yesterday = new DateTime( '-1 day', wp_timezone() );
 
-	if( is_digest_posted( $yesterday ) ) return;
+	if( exists_digest_post( $yesterday ) ) return;
 
 	$all_items = parse_pleroma_atom( get_option( 'rss_url') );
 	wp_insert_post( build_daily_digest_post( $yesterday, $all_items ) );
@@ -97,7 +99,7 @@ function add_daily_digest_schedule( int $est ){
 	}
 }
 
-function is_digest_posted( DateTime $date ){
+function exists_digest_post( DateTime $date ){
 	$posts = get_posts( array(
 		'category' => get_option( 'digest_cat' ),
 		'date_query' => array(array (
@@ -106,5 +108,6 @@ function is_digest_posted( DateTime $date ){
 			'day' => $date->format('d'),
 		)))
 	);
-	return $posts ? false : true;
+	error_log( print_r( $posts, true) );
+	return $posts ? true : false;
 }
