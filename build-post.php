@@ -14,7 +14,7 @@ function build_main_content( DateTime $date, $all_items = array() ){
 	ksort( $items );
 
 	$content = '';
-	foreach( $items as $time => $item ){
+	foreach( $items as $item ){
 		$content .= <<< EOF
 			<!-- wp:paragraph -->
 			<p>{$item['content']} <a href="{$item['link']}" target="_blank">#</a></p>
