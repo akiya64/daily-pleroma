@@ -10,8 +10,11 @@
  * @package:     daily-pleroma
  */
 
+require_once __DIR__ . '/action/update-options.php';
+require_once __DIR__ . '/action/test-settings.php';
+require_once __DIR__ . '/page/tools.php';
+
 require_once __DIR__ . '/build-post.php';
 require_once __DIR__ . '/helper.php';
 require_once __DIR__ . '/parser.php';
 require_once __DIR__ . '/scheduler.php';
-require_once __DIR__ . '/setting-page.php';
