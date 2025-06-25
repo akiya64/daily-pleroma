@@ -22,6 +22,12 @@ add_action(
 							render_setting_form();
 							test_settings();
 						?>
+					<h2>Upload json</h2>
+						<form method="post" enctype="multipart/form-data">
+							<input type="file" name="outbox-json">
+							<input type="submit" value="アップロード">
+						</form>
+						<?php insert_post_from_json() ?>
 				<?php
 			}
 		);

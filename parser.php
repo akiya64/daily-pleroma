@@ -28,3 +28,23 @@ function parse_pleroma_atom( $url ){
 
 	return $items;
 }
+
+function parse_outbox_json( $json ){
+	$outbox = json_decode( $json );
+	$collection = $outbox->orderedItems;
+
+	foreach( $collection as $item ){
+		$item = $item->object;
+
+		$date = new DateTime( $item->published );
+		$date->setTimeZone( wp_timezone() );
+		$key = $date->format( 'c' );
+		
+		$items[ $key ] = array(
+			'link' => $item->id,
+			'content' => (string) $item->content,
+		);
+	}
+
+	return $items;
+}
