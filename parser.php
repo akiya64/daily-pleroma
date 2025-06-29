@@ -10,7 +10,7 @@ function parse_pleroma_atom( $url ){
 
 	foreach( $atom->entry as $entry ){
 		$date = new DateTime( $entry->published );
-		$date->setTimeZone(new DateTimeZone('Asia/Tokyo'));
+		$date->setTimeZone( wp_timezone() );
 		$key = $date->format( 'c' );
 		
 		foreach ( $entry->link as $link ){
