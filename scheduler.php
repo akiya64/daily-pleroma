@@ -38,7 +38,6 @@ function add_daily_digest_schedule( int $est ){
 add_action(
 	'deactivate_daily-pleroma/daily-pleroma.php',
 	function(){
-		error_log('deactivate');
 		$timestamp = wp_next_scheduled( 'insert_yesterday_digest_hook' );
 		wp_unschedule_event( $timestamp, 'insert_yesterday_digest_hook' );
 	}
