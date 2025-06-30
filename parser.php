@@ -36,6 +36,10 @@ function parse_outbox_json( $json ){
 	foreach( $collection as $item ){
 		$item = $item->object;
 
+		if( ! isset( $item->published ) ){
+			continue;
+		}
+
 		$date = new DateTime( $item->published );
 		$date->setTimeZone( wp_timezone() );
 		$key = $date->format( 'c' );
