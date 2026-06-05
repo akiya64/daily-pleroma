@@ -16,23 +16,39 @@ add_action(
 			'daily_pleroma',
 			function(){
 				?>
-				<h1>Daily Pleroma</h1>
-					<h2>RSS feed settings</h2>
-						<?php
-							render_setting_form();
-							test_settings();
-						?>
-					<h2>Upload json</h2>
-						<form method="post" enctype="multipart/form-data">
-							<input type="file" name="outbox-json">
-							<input type="submit" value="アップロード">
-						</form>
-						<?php insert_post_from_json() ?>
+					<div class="wrap" id="daily-pleroma-settings">Loading</div>
 				<?php
 			}
 		);
 	},
 	99
+);
+
+add_action(
+	'admin_enqueue_scripts',
+	function( $admin_page ){
+		if ( 'tools_page_daily_pleroma' !== $admin_page ) {
+			return;
+		}
+
+		$asset_file = plugin_dir_path( __FILE__ ) . 'build/index.asset.php';
+
+		if ( ! file_exists( $asset_file ) ) {
+			return;
+		}
+
+		$asset = include $asset_file;
+
+		wp_enqueue_script(
+			'daily-pleroma-settings',
+			plugins_url( 'build/index.js', __FILE__ ),
+			$asset['dependencies'],
+			$asset['version'],
+			array(
+				'in_footer' => true,
+			)
+		);
+	}
 );
 
 function render_setting_form(){
