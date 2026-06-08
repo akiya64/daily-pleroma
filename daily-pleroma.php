@@ -13,7 +13,7 @@
 require_once __DIR__ . '/action/update-options.php';
 require_once __DIR__ . '/action/test-settings.php';
 require_once __DIR__ . '/action/post-from-json.php';
-require_once __DIR__ . '/page/tools.php';
+require_once __DIR__ . '/page/settings.php';
 
 require_once __DIR__ . '/build-post.php';
 require_once __DIR__ . '/helper.php';

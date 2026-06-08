@@ -9,7 +9,7 @@ add_action(
 	'admin_menu',
 	function(){
 		add_submenu_page(
-			'tools.php',
+			'options-general.php',
 			'Daily Pleroma',
 			'Daily Pleroma',
 			'manage_options',
