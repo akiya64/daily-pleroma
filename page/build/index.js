@@ -97,7 +97,6 @@ const EstTimePicker = ({
   est,
   onChange
 }) => {
-  console.log(est);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TimePicker.TimeInput, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('投稿する時刻', 'daily-preloma'),
     value: est,
@@ -127,12 +126,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const RssUrlControl = ({
-  value,
+  url,
   onChange
 }) => {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TextControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('rss の URL', 'daily-preloma'),
-    value: value,
+    value: url,
     onChange: onChange
   });
 };
@@ -151,6 +150,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1__);
+
 
 const useSettings = () => {
   const [rssUrl, setRssUrl] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('');
@@ -160,6 +162,26 @@ const useSettings = () => {
     hours: 0,
     minutes: 0
   });
+  (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default()({
+      path: '/wp/v2/settings'
+    }).then(settings => {
+      const {
+        rss_url,
+        digest_author,
+        digest_category,
+        est_daily_post
+      } = settings.daily_pleroma_settings;
+      setRssUrl(rss_url);
+      setDigestAuthor(digest_author);
+      setDigestCategory(digest_category);
+      const [hours, minutes] = est_daily_post.split(':');
+      setEstDailyPost({
+        hours: hours,
+        minutes: minutes
+      });
+    });
+  }, []);
   return {
     rssUrl,
     setRssUrl,
@@ -181,6 +203,16 @@ const useSettings = () => {
 (module) {
 
 module.exports = window["ReactJSXRuntime"];
+
+/***/ },
+
+/***/ "@wordpress/api-fetch"
+/*!**********************************!*\
+  !*** external ["wp","apiFetch"] ***!
+  \**********************************/
+(module) {
+
+module.exports = window["wp"]["apiFetch"];
 
 /***/ },
 

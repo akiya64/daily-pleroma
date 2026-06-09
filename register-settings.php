@@ -6,7 +6,7 @@
  */
 
 add_action(
-	'admin_init',
+	'init',
 	function () {
 		$default = array(
 			'rss_url' => 'https://example.com/feed.atom',
@@ -39,7 +39,7 @@ add_action(
 			array(
 				'type'         => 'object',
 				'default'      => $default,
-				'show_in_rest' => $schema
+				'show_in_rest' => array( 'schema' => $schema )
 			)
 		);
 
