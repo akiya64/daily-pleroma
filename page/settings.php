@@ -27,7 +27,7 @@ add_action(
 add_action(
 	'admin_enqueue_scripts',
 	function( $admin_page ){
-		if ( 'tools_page_daily_pleroma' !== $admin_page ) {
+		if ( 'settings_page_daily_pleroma' !== $admin_page ) {
 			return;
 		}
 
