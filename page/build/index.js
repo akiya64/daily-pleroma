@@ -22,15 +22,15 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const AuthorSelector = ({
-  user,
+  author,
   onChange
 }) => {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.SelectControl, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('ダイジェストの所有者', 'daily-preloma'),
-    value: user,
+    value: author,
     onChange: onChange,
     options: [{
-      laebel: 'akkoma',
+      label: 'akiya',
       value: '1'
     }]
   });
@@ -66,7 +66,7 @@ const CategorySelector = ({
     value: cat,
     onChange: onChange,
     options: [{
-      laebel: 'akkoma',
+      label: 'akkoma',
       value: '1'
     }]
   });
@@ -97,12 +97,10 @@ const EstTimePicker = ({
   est,
   onChange
 }) => {
+  console.log(est);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.TimePicker.TimeInput, {
     label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('投稿する時刻', 'daily-preloma'),
-    value: {
-      hours: 0,
-      minutes: 0
-    },
+    value: est,
     onChange: onChange
   });
 };
@@ -137,6 +135,41 @@ const RssUrlControl = ({
     value: value,
     onChange: onChange
   });
+};
+
+/***/ },
+
+/***/ "./page/src/hooks/useSettings.js"
+/*!***************************************!*\
+  !*** ./page/src/hooks/useSettings.js ***!
+  \***************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   useSettings: () => (/* binding */ useSettings)
+/* harmony export */ });
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_0__);
+
+const useSettings = () => {
+  const [rssUrl, setRssUrl] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('');
+  const [digestAuthor, setDigestAuthor] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
+  const [digestCategory, setDigestCategory] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
+  const [estDailyPost, setEstDailyPost] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({
+    hours: 0,
+    minutes: 0
+  });
+  return {
+    rssUrl,
+    setRssUrl,
+    digestAuthor,
+    setDigestAuthor,
+    digestCategory,
+    setDigestCategory,
+    estDailyPost,
+    setEstDailyPost
+  };
 };
 
 /***/ },
@@ -276,12 +309,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
 /* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _components_RssUrlControl__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/RssUrlControl */ "./page/src/components/RssUrlControl.js");
-/* harmony import */ var _components_AuthorSelector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/AuthorSelector */ "./page/src/components/AuthorSelector.js");
-/* harmony import */ var _components_CategorySelector__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/CategorySelector */ "./page/src/components/CategorySelector.js");
-/* harmony import */ var _components_EstTimePicker__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/EstTimePicker */ "./page/src/components/EstTimePicker.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
+/* harmony import */ var _components_AuthorSelector__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/AuthorSelector */ "./page/src/components/AuthorSelector.js");
+/* harmony import */ var _components_CategorySelector__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/CategorySelector */ "./page/src/components/CategorySelector.js");
+/* harmony import */ var _components_EstTimePicker__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/EstTimePicker */ "./page/src/components/EstTimePicker.js");
+/* harmony import */ var _components_RssUrlControl__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/RssUrlControl */ "./page/src/components/RssUrlControl.js");
+/* harmony import */ var _hooks_useSettings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./hooks/useSettings */ "./page/src/hooks/useSettings.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
+
 
 
 
@@ -290,13 +325,35 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const SettingsPage = () => {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_RssUrlControl__WEBPACK_IMPORTED_MODULE_2__.RssUrlControl, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_AuthorSelector__WEBPACK_IMPORTED_MODULE_3__.AuthorSelector, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_CategorySelector__WEBPACK_IMPORTED_MODULE_4__.CategorySelector, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_components_EstTimePicker__WEBPACK_IMPORTED_MODULE_5__.EstTimePicker, {})]
+  const {
+    rssUrl,
+    setRssUrl,
+    digestAuthor,
+    setDigestAuthor,
+    digestCategory,
+    setDigestCategory,
+    estDailyPost,
+    setEstDailyPost
+  } = (0,_hooks_useSettings__WEBPACK_IMPORTED_MODULE_6__.useSettings)();
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_RssUrlControl__WEBPACK_IMPORTED_MODULE_5__.RssUrlControl, {
+      url: rssUrl,
+      onChange: v => setRssUrl(v)
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_AuthorSelector__WEBPACK_IMPORTED_MODULE_2__.AuthorSelector, {
+      author: digestAuthor,
+      onChange: v => setDigestAuthor(v)
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_CategorySelector__WEBPACK_IMPORTED_MODULE_3__.CategorySelector, {
+      cat: digestCategory,
+      onChange: v => setDigestCategory(v)
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_EstTimePicker__WEBPACK_IMPORTED_MODULE_4__.EstTimePicker, {
+      est: estDailyPost,
+      onChange: v => setEstDailyPost(v)
+    })]
   });
 };
 _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(() => {
   const root = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_1__.createRoot)(document.getElementById('daily-pleroma-settings'));
-  root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(SettingsPage, {}));
+  root.render(/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(SettingsPage, {}));
 });
 })();
 

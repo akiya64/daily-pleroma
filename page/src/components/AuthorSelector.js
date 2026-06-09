@@ -1,14 +1,14 @@
 import { __ } from '@wordpress/i18n'
 import { SelectControl } from '@wordpress/components'
 
-export const AuthorSelector = ( { user, onChange }) => {
+export const AuthorSelector = ( { author, onChange }) => {
 	return (
 		<SelectControl
 			label={ __( 'ダイジェストの所有者', 'daily-preloma' ) }
-			value={ user }
+			value={ author }
 			onChange={ onChange }
 			options={ [
-				{ laebel: 'akkoma', value: '1' }
+				{ label: 'akiya', value: '1' }
 			] }
 		/>
 	)

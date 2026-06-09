@@ -8,7 +8,7 @@ export const CategorySelector = ( { cat, onChange }) => {
 			value={ cat }
 			onChange={ onChange }
 			options={ [
-				{ laebel: 'akkoma', value: '1' }
+				{ label: 'akkoma', value: '1' }
 			] }
 		/>
 	)
