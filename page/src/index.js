@@ -1,8 +1,9 @@
 import domReady from '@wordpress/dom-ready';
 import { createRoot } from '@wordpress/element';
+import { RssUrlControl } from './components/RssUrlControl'
 
 const SettingsPage = () => {
-    return <div>Placeholder for settings page</div>;
+    return <RssUrlControl />;
 };
 
 domReady( () => {
