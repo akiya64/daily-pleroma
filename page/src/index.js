@@ -3,6 +3,7 @@ import { createRoot } from '@wordpress/element'
 import { RssUrlControl } from './components/RssUrlControl'
 import { AuthorSelector } from './components/AuthorSelector'
 import { CategorySelector } from './components/CategorySelector'
+import { EstTimePicker } from './components/EstTimePicker'
 
 const SettingsPage = () => {
 	return (
