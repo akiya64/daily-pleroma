@@ -1,9 +1,18 @@
 import domReady from '@wordpress/dom-ready';
 import { createRoot } from '@wordpress/element';
 import { RssUrlControl } from './components/RssUrlControl'
+import { AuthorSelector } from './components/AuthorSelector'
+import { CategorySelector } from './components/CategorySelector'
 
 const SettingsPage = () => {
-    return <RssUrlControl />;
+	return (
+		<div>
+			<RssUrlControl />
+			<AuthorSelector />
+			<CategorySelector />
+			<EstTimePicker />
+		</div>
+	)
 };
 
 domReady( () => {
