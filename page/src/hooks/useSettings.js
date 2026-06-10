@@ -27,5 +27,25 @@ export const useSettings = () => {
 		} )
 	}, [] )
 
-	return { settings, setSettings }
+	const saveSettings = () => {
+		const { rssUrl, digestAuthor, digestCategory, estDailyPost } = settings
+		const { hours, minutes } = estDailyPost
+
+		apiFetch( {
+			path: '/wp/v2/settings',
+			method: 'POST',
+			data: {
+				daily_pleroma_settings: {
+					rss_url: rssUrl,
+					digest_author: digestAuthor,
+					digest_category: digestCategory,
+					est_daily_post: hours.toString().padStart( 2, "0" ) + ':' + minutes.toString().padStart( 2, "0" )
+				}
+			}
+		} ).then( () => {
+			console.log("saved!")
+		} )
+	}
+
+	return { settings, setSettings, saveSettings }
 }

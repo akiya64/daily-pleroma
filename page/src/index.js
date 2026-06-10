@@ -5,9 +5,10 @@ import { CategorySelector } from './components/CategorySelector'
 import { EstTimePicker } from './components/EstTimePicker'
 import { RssUrlControl } from './components/RssUrlControl'
 import { useSettings } from './hooks/useSettings'
+import { SaveButton } from './components/SaveButton'
 
 const SettingsPage = () => {
-	const { settings, setSettings } = useSettings()
+	const { settings, setSettings, saveSettings } = useSettings()
 	const { rssUrl, digestAuthor, digestCategory, estDailyPost } = settings
 
 	return (
@@ -27,6 +28,9 @@ const SettingsPage = () => {
 			<EstTimePicker
 				est={ estDailyPost }
 				onChange={ (v) => setSettings({ estDailyPost: v}) }
+			/>
+			<SaveButton
+				onClick={ saveSettings }
 			/>
 		</div>
 	)
