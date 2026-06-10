@@ -7,33 +7,26 @@ import { RssUrlControl } from './components/RssUrlControl'
 import { useSettings } from './hooks/useSettings'
 
 const SettingsPage = () => {
-	const {
-		rssUrl,
-		setRssUrl,
-		digestAuthor,
-		setDigestAuthor,
-		digestCategory,
-		setDigestCategory,
-		estDailyPost,
-		setEstDailyPost
-	} = useSettings()
+	const { settings, setSettings } = useSettings()
+	const { rssUrl, digestAuthor, digestCategory, estDailyPost } = settings
+
 	return (
 		<div>
 			<RssUrlControl
 				url={ rssUrl }
-				onChange={ (v)=>setRssUrl(v) }
+				onChange={ (v) => setSettings({ rssUrl: v }) }
 			/>
 			<AuthorSelector
 				author={ digestAuthor }
-				onChange={ (v) => setDigestAuthor(v) }
+				onChange={ (v) => setSettings({ digestAuthor: v }) }
 			/>
 			<CategorySelector
 				cat={ digestCategory }
-				onChange={ (v) => setDigestCategory(v) }
+				onChange={ (v) => setSettings({ digestCategory: v }) }
 			/>
 			<EstTimePicker
 				est={ estDailyPost }
-				onChange={ (v) => setEstDailyPost(v) }
+				onChange={ (v) => setSettings({ estDailyPost: v}) }
 			/>
 		</div>
 	)

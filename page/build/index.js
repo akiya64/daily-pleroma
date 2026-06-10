@@ -155,42 +155,47 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const useSettings = () => {
-  const [rssUrl, setRssUrl] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)('');
-  const [digestAuthor, setDigestAuthor] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
-  const [digestCategory, setDigestCategory] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)(1);
-  const [estDailyPost, setEstDailyPost] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useState)({
-    hours: 0,
-    minutes: 0
+  const [settings, setSettings] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useReducer)((prev, next) => {
+    return {
+      ...prev,
+      ...next
+    };
+  }, {
+    rssUrl: '',
+    digestAuthor: 1,
+    digestCategory: 1,
+    estDailyPost: {
+      hours: 0,
+      minutes: 0
+    }
   });
   (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_1___default()({
       path: '/wp/v2/settings'
-    }).then(settings => {
+    }).then(({
+      daily_pleroma_settings
+    }) => {
       const {
         rss_url,
         digest_author,
         digest_category,
         est_daily_post
-      } = settings.daily_pleroma_settings;
-      setRssUrl(rss_url);
-      setDigestAuthor(digest_author);
-      setDigestCategory(digest_category);
+      } = daily_pleroma_settings;
       const [hours, minutes] = est_daily_post.split(':');
-      setEstDailyPost({
-        hours: hours,
-        minutes: minutes
+      setSettings({
+        rssUrl: rss_url,
+        digestAuthor: digest_author,
+        digestCategory: digest_category,
+        estDailyPost: {
+          hours: hours,
+          minutes: minutes
+        }
       });
     });
   }, []);
   return {
-    rssUrl,
-    setRssUrl,
-    digestAuthor,
-    setDigestAuthor,
-    digestCategory,
-    setDigestCategory,
-    estDailyPost,
-    setEstDailyPost
+    settings,
+    setSettings
   };
 };
 
@@ -358,28 +363,36 @@ __webpack_require__.r(__webpack_exports__);
 
 const SettingsPage = () => {
   const {
-    rssUrl,
-    setRssUrl,
-    digestAuthor,
-    setDigestAuthor,
-    digestCategory,
-    setDigestCategory,
-    estDailyPost,
-    setEstDailyPost
+    settings,
+    setSettings
   } = (0,_hooks_useSettings__WEBPACK_IMPORTED_MODULE_6__.useSettings)();
+  const {
+    rssUrl,
+    digestAuthor,
+    digestCategory,
+    estDailyPost
+  } = settings;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_RssUrlControl__WEBPACK_IMPORTED_MODULE_5__.RssUrlControl, {
       url: rssUrl,
-      onChange: v => setRssUrl(v)
+      onChange: v => setSettings({
+        rssUrl: v
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_AuthorSelector__WEBPACK_IMPORTED_MODULE_2__.AuthorSelector, {
       author: digestAuthor,
-      onChange: v => setDigestAuthor(v)
+      onChange: v => setSettings({
+        digestAuthor: v
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_CategorySelector__WEBPACK_IMPORTED_MODULE_3__.CategorySelector, {
       cat: digestCategory,
-      onChange: v => setDigestCategory(v)
+      onChange: v => setSettings({
+        digestCategory: v
+      })
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_EstTimePicker__WEBPACK_IMPORTED_MODULE_4__.EstTimePicker, {
       est: estDailyPost,
-      onChange: v => setEstDailyPost(v)
+      onChange: v => setSettings({
+        estDailyPost: v
+      })
     })]
   });
 };
