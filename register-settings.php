@@ -43,6 +43,7 @@ add_action(
 			)
 		);
 
+		// Migration.
 		if ( get_option( 'rss_url' ) ) {
 			$old_settings = array(
 				'rss_url'         => get_option( 'rss_url' ),
@@ -53,6 +54,10 @@ add_action(
 
 			update_option( 'daily_pleroma_settings', $old_settings );
 
+			delete_option( 'rss_url' );
+			delete_option( 'digest_author' );
+			delete_option( 'digest_category' );
+			delete_option( 'est_daily_post' );
 		}
 	},
 );
