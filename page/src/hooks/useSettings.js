@@ -1,4 +1,7 @@
+import { __ } from '@wordpress/i18n'
 import { useEffect, useReducer } from '@wordpress/element'
+import { useDispatch } from '@wordpress/data'
+import { store as noticeStore } from '@wordpress/notices'
 import apiFetch from '@wordpress/api-fetch'
 
 export const useSettings = () => {
@@ -27,6 +30,8 @@ export const useSettings = () => {
 		} )
 	}, [] )
 
+	const { createSuccessNotice } = useDispatch( noticeStore )
+
 	const saveSettings = () => {
 		const { rssUrl, digestAuthor, digestCategory, estDailyPost } = settings
 		const { hours, minutes } = estDailyPost
@@ -43,7 +48,9 @@ export const useSettings = () => {
 				}
 			}
 		} ).then( () => {
-			console.log("saved!")
+			createSuccessNotice(
+				__( '設定を保存しました', 'daily-pleroma' )
+			)
 		} )
 	}
 

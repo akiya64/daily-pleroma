@@ -4,8 +4,9 @@ import { AuthorSelector } from './components/AuthorSelector'
 import { CategorySelector } from './components/CategorySelector'
 import { EstTimePicker } from './components/EstTimePicker'
 import { RssUrlControl } from './components/RssUrlControl'
-import { useSettings } from './hooks/useSettings'
 import { SaveButton } from './components/SaveButton'
+import { Notices } from './components/Notices'
+import { useSettings } from './hooks/useSettings'
 
 const SettingsPage = () => {
 	const { settings, setSettings, saveSettings } = useSettings()
@@ -13,6 +14,7 @@ const SettingsPage = () => {
 
 	return (
 		<div>
+			<Notices />
 			<RssUrlControl
 				url={ rssUrl }
 				onChange={ (v) => setSettings({ rssUrl: v }) }
