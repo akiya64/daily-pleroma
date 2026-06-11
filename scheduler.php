@@ -16,29 +16,34 @@ function insert_yesterday_digest(){
 
 add_action( 'insert_yesterday_digest_hook', 'insert_yesterday_digest' );
 
-function add_daily_digest_schedule( int $est ){
+add_action(
+	'update_option_daily_pleroma_settings',
+	function( $_old, $new){
+		$next = wp_get_scheduled_event( 'insert_yesterday_digest_hook' );
 
-	$next = wp_get_scheduled_event( 'insert_yesterday_digest_hook' );
-
-	if( $next ){
-		// 時刻変更.
-		$next_date = date( "H:i", $next->timestamp );
-		$est_date = date( "H:i", $est );
-
-		if( $next_date !== $est_date ){
-			wp_reschedule_event( $est, 'daily', 'insert_yesterday_digest_hook' );
+		if( $next ){
+			wp_unschedule_hook( 'insert_yesterday_digest_hook' );
 		}
 
-	} else {
-		// 新規登録.
-		wp_schedule_event( $est, 'daily', 'insert_yesterday_digest_hook' );
-	}
-}
+		$est = date_create_from_format( 'H:i', $new['est_daily_post'], wp_timezone() );
+		$est->setTimezone( new DateTimeZone('UTC'));
+
+		$now = new DateTime( 'now' );
+		$now->setTimezone( new DateTimeZone('UTC'));
+
+		if( $est < $now ){
+			$est->modify( '+1 day' );
+		}
+
+		wp_schedule_event( $est->getTimestamp(), 'daily', 'insert_yesterday_digest_hook' );
+	},
+	10,
+	3
+);
 
 add_action(
 	'deactivate_daily-pleroma/daily-pleroma.php',
 	function(){
-		$timestamp = wp_next_scheduled( 'insert_yesterday_digest_hook' );
-		wp_unschedule_event( $timestamp, 'insert_yesterday_digest_hook' );
+		wp_unschedule_hook( 'insert_yesterday_digest_hook' );
 	}
 );
