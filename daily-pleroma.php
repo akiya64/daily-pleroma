@@ -18,4 +18,5 @@ require_once __DIR__ . '/build-post.php';
 require_once __DIR__ . '/helper.php';
 require_once __DIR__ . '/parser.php';
 require_once __DIR__ . '/register-settings.php';
+require_once __DIR__ . '/rest-api.php';
 require_once __DIR__ . '/scheduler.php';
