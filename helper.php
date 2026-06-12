@@ -18,7 +18,11 @@ function exists_digest_post( DateTime $date ){
 	return $posts ? true : false;
 }
 
-function slice_items( DateTime $date, $all_items = array() ){
+function slice_items( array $all_items, DateTime $date, ){
+	if( ! $all_items ){
+		return;
+	}
+
 	ksort($all_items);
 
 	$items = array_filter( $all_items, function( $k ) use ( $date ){

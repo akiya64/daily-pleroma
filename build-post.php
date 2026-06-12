@@ -10,7 +10,7 @@ function build_daily_digest_post( DateTime $date, $all_items = array() ) {
 		$all_items = parse_pleroma_atom( get_option( 'rss_url' ) );
 	}
 
-	$items = slice_items( $date, $all_items );
+	$items = slice_items( $all_items, $date );
 
 	if( ! $items ){
 		return;
