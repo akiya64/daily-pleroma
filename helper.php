@@ -23,7 +23,7 @@ function slice_items( array $all_items, DateTime $date, ){
 		return;
 	}
 
-	ksort($all_items);
+	ksort( $all_items );
 
 	$items = array_filter( $all_items, function( $k ) use ( $date ){
 		return str_contains( $k, $date->format( 'Y-m-d' ) );
