@@ -24,6 +24,12 @@ add_action(
 			$entries    = slice_items( $all_items, $yesterday );
 			$entries    = array_map(
 				fn( $k, $v ) => array( 'date' => $k, ...$v ),
+			$entries = array_map(
+				fn( $k, $v ) => array(
+					'date'    => $k,
+					'content' => wp_kses_post( $v['content'] ),
+					'url'     => esc_url( $v['link'] )
+				),
 				array_keys( $entries ), array_values( $entries )
 			);
 

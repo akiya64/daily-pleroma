@@ -43,7 +43,9 @@ const Result = ( { entries, errorMessage } ) => {
 				<p> 月 日のエントリー</p>
 				{ entries.map( ( { content, link }) => {
 						return (
-							<p>{content}<link href={link}>#</link></p>
+							<p dangerouslySetInnerHTML={
+								{ __html: `${content} <a href="${link}">#</a>` }
+							} />
 					)
 					} )
 				}

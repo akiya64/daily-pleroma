@@ -243,11 +243,10 @@ const Result = ({
         content,
         link
       }) => {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
-          children: [content, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("link", {
-            href: link,
-            children: "#"
-          })]
+        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+          dangerouslySetInnerHTML: {
+            __html: `${content} <a href="${link}">#</a>`
+          }
         });
       })]
     });
