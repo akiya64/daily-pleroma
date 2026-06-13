@@ -203,16 +203,16 @@ __webpack_require__.r(__webpack_exports__);
 
 const RssFetchResult = () => {
   const [result, setResult] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]);
-  const [errorMessage, setError] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)('');
+  const [errorMessage, setErrorMessage] = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)('');
   const fetchRss = () => {
     _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_3___default()({
       path: '/daily-pleroma/v1/fetch-rss'
     }).then(result => {
       setResult(result);
-      setError('');
+      setErrorMessage('');
     }).catch(error => {
       setResult([]);
-      setError(error);
+      setErrorMessage(error.message);
     });
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
@@ -236,16 +236,18 @@ const Result = ({
       children: errorMessage
     });
   } else if (entries.length > 0) {
+    const day = new Date(entries[0].date);
     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-        children: " \u6708 \u65E5\u306E\u30A8\u30F3\u30C8\u30EA\u30FC"
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+        children: [day.getMonth() + 1, "\u6708", day.getDay(), "\u65E5\u306E\u30A8\u30F3\u30C8\u30EA\u30FC"]
       }), entries.map(({
         content,
-        link
-      }) => {
+        url
+      }, index) => {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+          id: index,
           dangerouslySetInnerHTML: {
-            __html: `${content} <a href="${link}">#</a>`
+            __html: `${content} <a href="${url}">#</a>`
           }
         });
       })]

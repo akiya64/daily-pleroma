@@ -5,16 +5,16 @@ import apiFetch from '@wordpress/api-fetch';
 
 export const RssFetchResult = () => {
 	const [ result, setResult ] = useState([])
-	const [ errorMessage, setError ] = useState('')
+	const [ errorMessage, setErrorMessage ] = useState('')
 
 	const fetchRss = () => {
 
 		apiFetch( { path: '/daily-pleroma/v1/fetch-rss' } ).then( ( result ) => {
 			setResult( result )
-			setError('')
+			setErrorMessage('')
 		} ).catch( ( error ) => {
 			setResult( [] )
-			setError( error )
+			setErrorMessage( error.message )
 		} )
 	}
 

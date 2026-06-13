@@ -11,7 +11,7 @@ add_action(
 		$get_yesterday_entry = function() {
 			$settings        = get_option( 'daily_pleroma_settings' );
 
-			if( ! $settings ){
+			if( ! $settings || ! $settings['rss_url'] ){
 				return new WP_Error(
 					'RSS の URL が設定されていません。',
 					'RSS の URL が設定されていません。',
