@@ -4,6 +4,7 @@ import { AuthorSelector } from './components/AuthorSelector'
 import { CategorySelector } from './components/CategorySelector'
 import { EstTimePicker } from './components/EstTimePicker'
 import { RssUrlControl } from './components/RssUrlControl'
+import { RssFetchResult } from './components/RssFetchResult'
 import { SaveButton } from './components/SaveButton'
 import { Notices } from './components/Notices'
 import { useSettings } from './hooks/useSettings'
@@ -34,6 +35,7 @@ const SettingsPage = () => {
 			<SaveButton
 				onClick={ saveSettings }
 			/>
+			<RssFetchResult />
 		</div>
 	)
 };
