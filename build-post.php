@@ -20,7 +20,7 @@ function build_daily_digest_post( DateTime $date, $all_items = array() ) {
 	foreach( $items as $item ){
 		$main_content .= <<< EOF
 			<!-- wp:paragraph -->
-			<p>{$item['content']} <a href="{$item['link']}" target="_blank">#</a></p>
+			<p>{$item['content']} <a href="{$item['url']}" target="_blank">#</a></p>
 			<!-- /wp:paragraph -->
 			EOF;
 	}

@@ -8,13 +8,14 @@ export const RssFetchResult = () => {
 	const [ errorMessage, setErrorMessage ] = useState('')
 
 	const fetchRss = () => {
-
 		apiFetch( { path: '/daily-pleroma/v1/fetch-rss' } ).then( ( result ) => {
 			setResult( result )
 			setErrorMessage('')
+
 		} ).catch( ( error ) => {
 			setResult( [] )
 			setErrorMessage( error.message )
+
 		} )
 	}
 
@@ -38,13 +39,14 @@ const Result = ( { entries, errorMessage } ) => {
 		return <p>{errorMessage}</p>
 
 	} else if( entries.length > 0 ){
+		const day = new Date( entries[0].date )
 		return (
 			<>
-				<p> 月 日のエントリー</p>
-				{ entries.map( ( { content, link }) => {
+				<p>{day.getMonth() + 1}月{day.getDay()}日のエントリー</p>
+				{ entries.map( ( { content, url }, index ) => {
 						return (
-							<p dangerouslySetInnerHTML={
-								{ __html: `${content} <a href="${link}">#</a>` }
+							<p id={ index } dangerouslySetInnerHTML={
+								{ __html: `${content} <a href="${url}">#</a>` }
 							} />
 					)
 					} )
