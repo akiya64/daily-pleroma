@@ -20,10 +20,23 @@ add_action(
 			}
 
 			$all_items  = parse_pleroma_atom( $settings['rss_url'] );
-			$yesterday  = new DateTime( '-1 day', wp_timezone() );
-			$entries    = slice_items( $all_items, $yesterday );
-			$entries    = array_map(
-				fn( $k, $v ) => array( 'date' => $k, ...$v ),
+
+			if( ! $all_items ){
+				return new WP_Error(
+					'RSS が読み込めませんでした。',
+					'RSS が読み込めませんでした。',
+					array( 'status' => 500 )
+				);
+			}
+
+			$days_ago = -1;
+			do {
+				$yesterday  = new DateTime( $days_ago . 'day', wp_timezone() );
+				$entries    = slice_items( $all_items, $yesterday );
+				--$days_ago;
+
+			} while ( ! $entries );
+
 			$entries = array_map(
 				fn( $k, $v ) => array(
 					'date'    => $k,
