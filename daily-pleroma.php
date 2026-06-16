@@ -12,6 +12,7 @@
 
 require_once __DIR__ . '/action/post-from-json.php';
 require_once __DIR__ . '/rest-api/fetch-rss.php';
+require_once __DIR__ . '/rest-api/import-json.php';
 require_once __DIR__ . '/page/settings.php';
 
 require_once __DIR__ . '/build-post.php';

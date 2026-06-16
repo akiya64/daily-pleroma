@@ -8,6 +8,7 @@ import { RssFetchResult } from './components/RssFetchResult'
 import { SaveButton } from './components/SaveButton'
 import { Notices } from './components/Notices'
 import { useSettings } from './hooks/useSettings'
+import { JsonDropZone } from './components/JsonDropZone'
 
 const SettingsPage = () => {
 	const { settings, setSettings, saveSettings } = useSettings()
@@ -36,6 +37,7 @@ const SettingsPage = () => {
 				onClick={ saveSettings }
 			/>
 			<RssFetchResult />
+			<JsonDropZone />
 		</div>
 	)
 };
