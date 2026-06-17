@@ -48,6 +48,7 @@ add_action(
 				'in_footer' => true,
 			)
 		);
+		wp_enqueue_style( 'wp-components' );
 	}
 );
 
