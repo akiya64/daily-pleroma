@@ -23,9 +23,10 @@ export const ImportPanel = () => {
 	return (
 		<>
 			<div style={{
-				background: 'lightgray',
+				background: jsonFile ? 'white' : 'gainsboro',
 				padding: 32,
-				marginTop: 32,
+				marginTop: 16,
+				marginBottom: 16,
 				position: 'relative'
 			  }} >
 				{ jsonFile

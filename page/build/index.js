@@ -276,9 +276,10 @@ const ImportPanel = () => {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       style: {
-        background: 'lightgray',
+        background: jsonFile ? 'white' : 'gainsboro',
         padding: 32,
-        marginTop: 32,
+        marginTop: 16,
+        marginBottom: 16,
         position: 'relative'
       },
       children: [jsonFile ? jsonFile.name : 'outbox-json をここにドロップ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.DropZone, {
@@ -751,13 +752,14 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const SettingsPage = () => {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("div", {
     style: {
-      maxWidth: '800px',
-      backgroundColor: 'white',
-      padding: 32
+      maxWidth: '800px'
     },
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_components_Notices__WEBPACK_IMPORTED_MODULE_6__.Notices, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TabPanel, {
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.TabPanel, {
+      style: {
+        padding: 16
+      },
       tabs: [{
         name: 'settings',
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_2__.__)('Settings', 'daily-pleroma')
@@ -780,7 +782,7 @@ const SettingsPage = () => {
         }
         return null;
       }
-    })]
+    })
   });
 };
 _wordpress_dom_ready__WEBPACK_IMPORTED_MODULE_0___default()(() => {

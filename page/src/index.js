@@ -10,15 +10,10 @@ import { RssFetchPanel } from './components/Tabs/RssFetchPanel'
 const SettingsPage = () => {
 	return (
 		<div
-			style={{
-				maxWidth: '800px',
-				backgroundColor: 'white',
-				padding: 32
-			}}
+			style={{ maxWidth: '800px' }}
 		>
-			<Notices />
 			<TabPanel
-				
+				style={{ padding: 16 }}
 				tabs={[
 					{
 						name: 'settings',

@@ -49,6 +49,7 @@ add_action(
 
 			echo '<p>Done insert post from outbox.json</p>';
 		};
+
 		register_rest_route( 'daily-pleroma/v1', '/import-json', array(
 			'methods'  => WP_REST_Server::CREATABLE,
 			'callback' => $import,
