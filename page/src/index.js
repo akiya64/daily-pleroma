@@ -7,29 +7,39 @@ import { ImportPanel } from './components/ImportPnael'
 
 const SettingsPage = () => {
 	return (
-		<TabPanel
-			tabs={[
-				{
-					name: 'settings',
-					title: __( 'Settings', 'daily-pleroma' )
-				},
-				{
-					name: 'import',
-					title: __( 'Import Json', 'daily-pleroma' )
-				}
-			]}
+		<div 
+			style={{
+				maxWidth: '800px',
+				backgroundColor: 'white',
+				padding: '1em'
+			}}
 		>
-			{ ( tab ) => {
-				if( tab.name === 'settings' ){
-					return <SettingsPanel />
-				}
-				if( tab.name === 'import' ){
-					return <ImportPanel />
-				}
-				return null
-			} }
+			<Notices />
+			<TabPanel
+				
+				tabs={[
+					{
+						name: 'settings',
+						title: __( 'Settings', 'daily-pleroma' )
+					},
+					{
+						name: 'import',
+						title: __( 'Import Json', 'daily-pleroma' )
+					}
+				]}
+			>
+				{ ( tab ) => {
+					if( tab.name === 'settings' ){
+						return <SettingsPanel />
+					}
+					if( tab.name === 'import' ){
+						return <ImportPanel />
+					}
+					return null
+				} }
 
-		</TabPanel>
+			</TabPanel>
+		</div>
 	)
 }
 
