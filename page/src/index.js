@@ -5,14 +5,15 @@ import { TabPanel } from '@wordpress/components'
 import { SettingsPanel } from './components/Tabs/SettingsPanel'
 import { ImportPanel } from './components/Tabs/ImportPanel'
 import { Notices } from './components/Notices'
+import { RssFetchPanel } from './components/Tabs/RssFetchPanel'
 
 const SettingsPage = () => {
 	return (
-		<div 
+		<div
 			style={{
 				maxWidth: '800px',
 				backgroundColor: 'white',
-				padding: '1em'
+				padding: 32
 			}}
 		>
 			<Notices />
@@ -24,6 +25,10 @@ const SettingsPage = () => {
 						title: __( 'Settings', 'daily-pleroma' )
 					},
 					{
+						name: 'checkRss',
+						title: __( 'Check RSS', 'daily-pleroma' )
+					},
+					{
 						name: 'import',
 						title: __( 'Import Json', 'daily-pleroma' )
 					}
@@ -32,6 +37,9 @@ const SettingsPage = () => {
 				{ ( tab ) => {
 					if( tab.name === 'settings' ){
 						return <SettingsPanel />
+					}
+					if( tab.name ==='checkRss' ){
+						return <RssFetchPanel />
 					}
 					if( tab.name === 'import' ){
 						return <ImportPanel />

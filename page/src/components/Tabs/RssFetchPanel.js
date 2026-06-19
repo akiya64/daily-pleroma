@@ -3,7 +3,7 @@ import { Button } from '@wordpress/components'
 import { useState } from 'react';
 import apiFetch from '@wordpress/api-fetch';
 
-export const RssFetchResult = () => {
+export const RssFetchPanel = () => {
 	const [ result, setResult ] = useState([])
 	const [ errorMessage, setErrorMessage ] = useState('')
 
@@ -20,7 +20,7 @@ export const RssFetchResult = () => {
 	}
 
 	return (
-		<>
+		<div style={{ paddingTop: 16 }}>
 			<Button
 				__next40pxDefaultSize
 				variant="primary"
@@ -29,7 +29,7 @@ export const RssFetchResult = () => {
 				{ __( 'RSS の読み込みテスト', 'daily-pleroma' ) }
 			</Button>
 			<Result entries={ result } errorMessage={errorMessage} />
-		</>
+		</div>
 	)
 }
 

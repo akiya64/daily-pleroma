@@ -10,7 +10,7 @@ export const SettingsPanel = () => {
 	const { settings, setSettings, saveSettings } = useSettings()
 	const { rssUrl, digestAuthor, digestCategory, estDailyPost } = settings
 	return (
-		<>
+		<div style={{ paddingTop: 16}}>
 			<RssUrlControl
 				url={ rssUrl }
 				onChange={ (v) => setSettings({ rssUrl: v }) }
@@ -30,6 +30,6 @@ export const SettingsPanel = () => {
 			<SaveButton
 				onClick={ saveSettings }
 			/>
-		</>
+		</div>
 	)
 }
