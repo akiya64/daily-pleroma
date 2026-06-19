@@ -2,8 +2,9 @@ import domReady from '@wordpress/dom-ready'
 import { createRoot } from '@wordpress/element'
 import { __ } from '@wordpress/i18n'
 import { TabPanel } from '@wordpress/components'
-import { SettingsPanel } from './components/SettingsPanel'
-import { ImportPanel } from './components/ImportPnael'
+import { SettingsPanel } from './components/Tabs/SettingsPanel'
+import { ImportPanel } from './components/Tabs/ImportPnael'
+import { Notices } from './components/Notices'
 
 const SettingsPage = () => {
 	return (

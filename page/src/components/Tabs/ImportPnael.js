@@ -15,7 +15,7 @@ export const ImportPanel = () => {
 				  }} >
 					outbox-json をここにドロップ
 				<DropZone
-					onFilesDrop={ (files)=>{
+					onFilesDrop={ (files)=>{ setJsonFile[files[0]]
 						const formData = new FormData()
 						formData.append(
 							'outbox-json',

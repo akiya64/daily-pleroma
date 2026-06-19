@@ -1,11 +1,10 @@
 import { __ } from '@wordpress/i18n'
-import { AuthorSelector } from './AuthorSelector'
-import { CategorySelector } from './CategorySelector'
-import { EstTimePicker } from './EstTimePicker'
-import { RssUrlControl } from './RssUrlControl'
-import { RssFetchResult } from './RssFetchResult'
-import { SaveButton } from './SaveButton'
-import { useSettings } from '../hooks/useSettings'
+import { AuthorSelector } from '../AuthorSelector'
+import { CategorySelector } from '../CategorySelector'
+import { EstTimePicker } from '../EstTimePicker'
+import { RssUrlControl } from '../RssUrlControl'
+import { SaveButton } from '../SaveButton'
+import { useSettings } from '../../hooks/useSettings'
 
 export const SettingsPanel = () => {
 	const { settings, setSettings, saveSettings } = useSettings()
@@ -31,7 +30,6 @@ export const SettingsPanel = () => {
 			<SaveButton
 				onClick={ saveSettings }
 			/>
-			<RssFetchResult />
 		</>
 	)
 }
