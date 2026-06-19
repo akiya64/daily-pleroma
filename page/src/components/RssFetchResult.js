@@ -21,7 +21,6 @@ export const RssFetchResult = () => {
 
 	return (
 		<>
-			<hr />
 			<Button
 				__next40pxDefaultSize
 				variant="primary"

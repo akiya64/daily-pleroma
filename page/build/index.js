@@ -240,9 +240,9 @@ const SaveButton = ({
 
 /***/ },
 
-/***/ "./page/src/components/Tabs/ImportPnael.js"
+/***/ "./page/src/components/Tabs/ImportPanel.js"
 /*!*************************************************!*\
-  !*** ./page/src/components/Tabs/ImportPnael.js ***!
+  !*** ./page/src/components/Tabs/ImportPanel.js ***!
   \*************************************************/
 (__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
@@ -264,25 +264,32 @@ __webpack_require__.r(__webpack_exports__);
 
 const ImportPanel = () => {
   const [jsonFile, setJsonFile] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)(undefined);
-  return jsonFile ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-    children: "\u30A2\u30C3\u30D7\u30ED\u30FC\u30C9"
-  }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-    style: {
-      background: 'lightgray',
-      padding: 32,
-      position: 'relative'
-    },
-    children: ["outbox-json \u3092\u3053\u3053\u306B\u30C9\u30ED\u30C3\u30D7", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.DropZone, {
-      onFilesDrop: files => {
-        setJsonFile[files[0]];
-        const formData = new FormData();
-        formData.append('outbox-json', files[0], files[0].name);
-        _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default()({
-          'path': '/daily-pleroma/v1/import-json',
-          'method': 'POST',
-          'body': formData
-        }).then().catch();
-      }
+  const onClickHandle = () => {
+    const formData = new FormData();
+    formData.append('outbox-json', files[0], files[0].name);
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default()({
+      'path': '/daily-pleroma/v1/import-json',
+      'method': 'POST',
+      'body': formData
+    }).then().catch();
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+      style: {
+        background: 'lightgray',
+        padding: 32,
+        marginTop: 32,
+        position: 'relative'
+      },
+      children: [jsonFile ? jsonFile.name : 'outbox-json をここにドロップ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.DropZone, {
+        onFilesDrop: files => {
+          setJsonFile(files[0]);
+        }
+      })]
+    }), jsonFile && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+      variant: 'primary',
+      onClick: onClickHandle,
+      children: "\u30A2\u30C3\u30D7\u30ED\u30FC\u30C9\u3057\u3066\u30C0\u30A4\u30B8\u30A7\u30B9\u30C8\u3092\u6295\u7A3F"
     })]
   });
 };
@@ -630,7 +637,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _components_Tabs_SettingsPanel__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Tabs/SettingsPanel */ "./page/src/components/Tabs/SettingsPanel.js");
-/* harmony import */ var _components_Tabs_ImportPnael__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Tabs/ImportPnael */ "./page/src/components/Tabs/ImportPnael.js");
+/* harmony import */ var _components_Tabs_ImportPanel__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Tabs/ImportPanel */ "./page/src/components/Tabs/ImportPanel.js");
 /* harmony import */ var _components_Notices__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Notices */ "./page/src/components/Notices.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
@@ -662,7 +669,7 @@ const SettingsPage = () => {
           return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_Tabs_SettingsPanel__WEBPACK_IMPORTED_MODULE_4__.SettingsPanel, {});
         }
         if (tab.name === 'import') {
-          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_Tabs_ImportPnael__WEBPACK_IMPORTED_MODULE_5__.ImportPanel, {});
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_components_Tabs_ImportPanel__WEBPACK_IMPORTED_MODULE_5__.ImportPanel, {});
         }
         return null;
       }

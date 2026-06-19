@@ -3,7 +3,7 @@ import { createRoot } from '@wordpress/element'
 import { __ } from '@wordpress/i18n'
 import { TabPanel } from '@wordpress/components'
 import { SettingsPanel } from './components/Tabs/SettingsPanel'
-import { ImportPanel } from './components/Tabs/ImportPnael'
+import { ImportPanel } from './components/Tabs/ImportPanel'
 import { Notices } from './components/Notices'
 
 const SettingsPage = () => {
