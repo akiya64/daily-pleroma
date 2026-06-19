@@ -5,12 +5,14 @@ import { EstTimePicker } from '../EstTimePicker'
 import { RssUrlControl } from '../RssUrlControl'
 import { SaveButton } from '../SaveButton'
 import { useSettings } from '../../hooks/useSettings'
+import { Notices } from '../Notices'
 
 export const SettingsPanel = () => {
 	const { settings, setSettings, saveSettings } = useSettings()
 	const { rssUrl, digestAuthor, digestCategory, estDailyPost } = settings
 	return (
-		<div style={{ paddingTop: 16}}>
+		<div style={{ paddingTop: 16 }}>
+			<Notices />
 			<RssUrlControl
 				url={ rssUrl }
 				onChange={ (v) => setSettings({ rssUrl: v }) }

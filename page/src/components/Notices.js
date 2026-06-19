@@ -12,5 +12,9 @@ export const Notices = () => {
 		return null
 	}
 
-	return <NoticeList notices={ notices } onRemove={ removeNotice } />
+	return (
+		<div style={{ marginBottom: 16 }} >
+			<NoticeList notices={ notices } onRemove={ removeNotice } />
+		</div>
+	)
 }
