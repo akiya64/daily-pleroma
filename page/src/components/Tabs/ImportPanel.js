@@ -1,16 +1,25 @@
 import apiFetch from '@wordpress/api-fetch';
 import { Button, DropZone } from '@wordpress/components';
+import { useDispatch } from '@wordpress/data';
 import { useState } from '@wordpress/element';
+import { store as noticeStore } from "@wordpress/notices"
+import { __ } from '@wordpress/i18n';
 
 export const ImportPanel = () => {
 	const [ jsonFile, setJsonFile ] = useState(undefined)
+	const { createErrorNotice, createSuccessNotice } = useDispatch( noticeStore )
+
+	const dropHandle = ( files ) => setJsonFile(files[0])
+	const dropZoneText = jsonFile
+		? jsonFile.name
+		: __( 'outbox-json をここにドロップ', 'daily-pleroma' )
 
 	const onClickHandle = () => {
 		const formData = new FormData()
 		formData.append(
 			'outbox-json',
-			files[0],
-			files[0].name
+			jsonFile,
+			jsonFile.name
 		)
 
 		apiFetch( {
@@ -21,7 +30,9 @@ export const ImportPanel = () => {
 	}
 
 	return (
-		<>
+		<div style={{ marginTop: 16 }}>
+			<Notices />
+
 			<div style={{
 				background: jsonFile ? 'white' : 'gainsboro',
 				padding: 32,
@@ -29,12 +40,9 @@ export const ImportPanel = () => {
 				marginBottom: 16,
 				position: 'relative'
 			  }} >
-				{ jsonFile
-					? jsonFile.name
-					: 'outbox-json をここにドロップ'
-				}
+				{ dropZoneText }
 				<DropZone
-					onFilesDrop={ (files)=>{ setJsonFile(files[0]) } }
+					onFilesDrop={dropHandle}
 				/>
 			</div>
 
@@ -46,6 +54,6 @@ export const ImportPanel = () => {
 					アップロードしてダイジェストを投稿
 				</Button>
 			}
-		</>
+		</div>
 	)
 }
