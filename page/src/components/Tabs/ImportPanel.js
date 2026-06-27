@@ -4,12 +4,16 @@ import { useDispatch } from '@wordpress/data';
 import { useState } from '@wordpress/element';
 import { store as noticeStore } from "@wordpress/notices"
 import { __ } from '@wordpress/i18n';
+import { Notices } from '../Notices'
 
 export const ImportPanel = () => {
 	const [ jsonFile, setJsonFile ] = useState(undefined)
-	const { createErrorNotice, createSuccessNotice } = useDispatch( noticeStore )
+	const { createErrorNotice, createSuccessNotice, removeAllNotices } = useDispatch( noticeStore )
 
-	const dropHandle = ( files ) => setJsonFile(files[0])
+	const dropHandle = ( files ) => {
+		removeAllNotices()
+		setJsonFile(files[0])
+	}
 	const dropZoneText = jsonFile
 		? jsonFile.name
 		: __( 'outbox-json をここにドロップ', 'daily-pleroma' )
@@ -26,7 +30,12 @@ export const ImportPanel = () => {
 			'path': '/daily-pleroma/v1/import-json',
 			'method': 'POST',
 			'body': formData
-		} ).then().catch()
+
+		} ).then( ( res ) => {
+			createSuccessNotice( res.message )
+		} ).catch( ( error ) => {
+			createErrorNotice( error.message )
+		} )
 	}
 
 	return (
@@ -46,7 +55,7 @@ export const ImportPanel = () => {
 				/>
 			</div>
 
-			{ jsonFile && 
+			{ jsonFile &&
 				<Button
 					variant= {'primary'}
 					onClick={ onClickHandle }

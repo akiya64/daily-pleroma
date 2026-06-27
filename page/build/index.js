@@ -168,9 +168,14 @@ const Notices = () => {
   if (notices.length === 0) {
     return null;
   }
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.NoticeList, {
-    notices: notices,
-    onRemove: removeNotice
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    style: {
+      marginBottom: 16
+    },
+    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_2__.NoticeList, {
+      notices: notices,
+      onRemove: removeNotice
+    })
   });
 };
 
@@ -254,27 +259,55 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
 /* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
-/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @wordpress/element */ "@wordpress/element");
+/* harmony import */ var _wordpress_element__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_wordpress_element__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var _wordpress_notices__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/notices */ "@wordpress/notices");
+/* harmony import */ var _wordpress_notices__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_notices__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var _Notices__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../Notices */ "./page/src/components/Notices.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
+
+
+
+
 
 
 
 
 const ImportPanel = () => {
-  const [jsonFile, setJsonFile] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_2__.useState)(undefined);
+  const [jsonFile, setJsonFile] = (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_3__.useState)(undefined);
+  const {
+    createErrorNotice,
+    createSuccessNotice,
+    removeAllNotices
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useDispatch)(_wordpress_notices__WEBPACK_IMPORTED_MODULE_4__.store);
+  const dropHandle = files => {
+    removeAllNotices();
+    setJsonFile(files[0]);
+  };
+  const dropZoneText = jsonFile ? jsonFile.name : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('outbox-json をここにドロップ', 'daily-pleroma');
   const onClickHandle = () => {
     const formData = new FormData();
-    formData.append('outbox-json', files[0], files[0].name);
+    formData.append('outbox-json', jsonFile, jsonFile.name);
     _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_0___default()({
       'path': '/daily-pleroma/v1/import-json',
       'method': 'POST',
       'body': formData
-    }).then().catch();
+    }).then(res => {
+      createSuccessNotice(res.message);
+    }).catch(error => {
+      createErrorNotice(error.message);
+    });
   };
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+    style: {
+      marginTop: 16
+    },
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Notices__WEBPACK_IMPORTED_MODULE_6__.Notices, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       style: {
         background: jsonFile ? 'white' : 'gainsboro',
         padding: 32,
@@ -282,12 +315,10 @@ const ImportPanel = () => {
         marginBottom: 16,
         position: 'relative'
       },
-      children: [jsonFile ? jsonFile.name : 'outbox-json をここにドロップ', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.DropZone, {
-        onFilesDrop: files => {
-          setJsonFile(files[0]);
-        }
+      children: [dropZoneText, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.DropZone, {
+        onFilesDrop: dropHandle
       })]
-    }), jsonFile && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+    }), jsonFile && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
       variant: 'primary',
       onClick: onClickHandle,
       children: "\u30A2\u30C3\u30D7\u30ED\u30FC\u30C9\u3057\u3066\u30C0\u30A4\u30B8\u30A7\u30B9\u30C8\u3092\u6295\u7A3F"
@@ -401,8 +432,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _RssUrlControl__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../RssUrlControl */ "./page/src/components/RssUrlControl.js");
 /* harmony import */ var _SaveButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../SaveButton */ "./page/src/components/SaveButton.js");
 /* harmony import */ var _hooks_useSettings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../hooks/useSettings */ "./page/src/hooks/useSettings.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _Notices__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../Notices */ "./page/src/components/Notices.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__);
+
 
 
 
@@ -423,31 +456,31 @@ const SettingsPanel = () => {
     digestCategory,
     estDailyPost
   } = settings;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
     style: {
       paddingTop: 16
     },
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_RssUrlControl__WEBPACK_IMPORTED_MODULE_4__.RssUrlControl, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Notices__WEBPACK_IMPORTED_MODULE_7__.Notices, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_RssUrlControl__WEBPACK_IMPORTED_MODULE_4__.RssUrlControl, {
       url: rssUrl,
       onChange: v => setSettings({
         rssUrl: v
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_AuthorSelector__WEBPACK_IMPORTED_MODULE_1__.AuthorSelector, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_AuthorSelector__WEBPACK_IMPORTED_MODULE_1__.AuthorSelector, {
       author: digestAuthor,
       onChange: v => setSettings({
         digestAuthor: v
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_CategorySelector__WEBPACK_IMPORTED_MODULE_2__.CategorySelector, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_CategorySelector__WEBPACK_IMPORTED_MODULE_2__.CategorySelector, {
       cat: digestCategory,
       onChange: v => setSettings({
         digestCategory: v
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_EstTimePicker__WEBPACK_IMPORTED_MODULE_3__.EstTimePicker, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_EstTimePicker__WEBPACK_IMPORTED_MODULE_3__.EstTimePicker, {
       est: estDailyPost,
       onChange: v => setSettings({
         estDailyPost: v
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_SaveButton__WEBPACK_IMPORTED_MODULE_5__.SaveButton, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_SaveButton__WEBPACK_IMPORTED_MODULE_5__.SaveButton, {
       onClick: saveSettings
     })]
   });
