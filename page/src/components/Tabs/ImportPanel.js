@@ -34,7 +34,6 @@ export const ImportPanel = () => {
 		} ).then( ( res ) => {
 			createSuccessNotice( res )
 		} ).catch( ( error ) => {
-			console.log(res)
 			createErrorNotice( error.message )
 		} )
 	}
@@ -56,23 +55,21 @@ export const ImportPanel = () => {
 				/>
 			</div>
 
-			{ jsonFile &&
-				<>
-				<Button
-					variant= {'primary'}
-					onClick={ onClickHandle }
-				>
-					アップロードしてダイジェストを投稿
-				</Button>
-				<Button
-					style={ { marginLeft: 64 } }
-					variant= {'secondary'}
-					onClick={ () => setJsonFile(null)  }
-				>
-					ファイルをクリア
-				</Button>
-				</>
-			}
+			<Button
+				variant= {'primary'}
+				onClick={ onClickHandle }
+				disabled={ jsonFile ? false : true }
+			>
+				アップロードしてダイジェストを投稿
+			</Button>
+			<Button
+				style={ { marginLeft: 32 } }
+				variant= {'secondary'}
+				onClick={ () => setJsonFile(null)  }
+				disabled={ jsonFile ? false : true }
+			>
+				ファイルをクリア
+			</Button>
 		</div>
 	)
 }
