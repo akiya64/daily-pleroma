@@ -28,7 +28,7 @@ add_action(
 			$outbox = file_get_contents( $_FILES['outbox-json']['tmp_name'] );
 			$all_item = parse_outbox_json( $outbox );
 
-			if( count( $all_item ) === 0 ){
+			if( ! $all_item || count( $all_item ) === 0 ){
 				return new WP_Error(
 					'JSON ファイルに有効なエントリーが含まれていません',
 					'JSON ファイルに有効なエントリーが含まれていません',
