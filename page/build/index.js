@@ -289,7 +289,7 @@ const ImportPanel = () => {
     removeAllNotices();
     setJsonFile(files[0]);
   };
-  const dropZoneText = jsonFile ? jsonFile.name : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('outbox-json をここにドロップ', 'daily-pleroma');
+  const dropZoneText = jsonFile ? jsonFile.name : (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_5__.__)('outbox.json をここにドロップ', 'daily-pleroma');
   const onClickHandle = () => {
     const formData = new FormData();
     formData.append('outbox-json', jsonFile, jsonFile.name);
@@ -298,8 +298,9 @@ const ImportPanel = () => {
       'method': 'POST',
       'body': formData
     }).then(res => {
-      createSuccessNotice(res.message);
+      createSuccessNotice(res);
     }).catch(error => {
+      console.log(res);
       createErrorNotice(error.message);
     });
   };
@@ -318,10 +319,19 @@ const ImportPanel = () => {
       children: [dropZoneText, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.DropZone, {
         onFilesDrop: dropHandle
       })]
-    }), jsonFile && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-      variant: 'primary',
-      onClick: onClickHandle,
-      children: "\u30A2\u30C3\u30D7\u30ED\u30FC\u30C9\u3057\u3066\u30C0\u30A4\u30B8\u30A7\u30B9\u30C8\u3092\u6295\u7A3F"
+    }), jsonFile && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.Fragment, {
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+        variant: 'primary',
+        onClick: onClickHandle,
+        children: "\u30A2\u30C3\u30D7\u30ED\u30FC\u30C9\u3057\u3066\u30C0\u30A4\u30B8\u30A7\u30B9\u30C8\u3092\u6295\u7A3F"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+        style: {
+          marginLeft: 64
+        },
+        variant: 'secondary',
+        onClick: () => setJsonFile(null),
+        children: "\u30D5\u30A1\u30A4\u30EB\u3092\u30AF\u30EA\u30A2"
+      })]
     })]
   });
 };

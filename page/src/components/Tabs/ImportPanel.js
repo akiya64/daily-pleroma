@@ -16,7 +16,7 @@ export const ImportPanel = () => {
 	}
 	const dropZoneText = jsonFile
 		? jsonFile.name
-		: __( 'outbox-json をここにドロップ', 'daily-pleroma' )
+		: __( 'outbox.json をここにドロップ', 'daily-pleroma' )
 
 	const onClickHandle = () => {
 		const formData = new FormData()
@@ -32,8 +32,9 @@ export const ImportPanel = () => {
 			'body': formData
 
 		} ).then( ( res ) => {
-			createSuccessNotice( res.message )
+			createSuccessNotice( res )
 		} ).catch( ( error ) => {
+			console.log(res)
 			createErrorNotice( error.message )
 		} )
 	}
@@ -56,12 +57,21 @@ export const ImportPanel = () => {
 			</div>
 
 			{ jsonFile &&
+				<>
 				<Button
 					variant= {'primary'}
 					onClick={ onClickHandle }
 				>
 					アップロードしてダイジェストを投稿
 				</Button>
+				<Button
+					style={ { marginLeft: 64 } }
+					variant= {'secondary'}
+					onClick={ () => setJsonFile(null)  }
+				>
+					ファイルをクリア
+				</Button>
+				</>
 			}
 		</div>
 	)
