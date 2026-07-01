@@ -4,7 +4,8 @@
     },
     "scripts": {
         "build": "wp-scripts build --source-path=page/src --output-path=page/build",
-        "start": "wp-scripts start --source-path=page/src --output-path=page/build"
+        "start:settings": "wp-scripts start --source-path=page/settings/src --output-path=page/settings/build",
+        "start:tools": "wp-scripts start --source-path=page/tools/src --output-path=page/tools/build"
     },
     "dependencies": {
         "@wordpress/api-fetch": "^7.48.0",
