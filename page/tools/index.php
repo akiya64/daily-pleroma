@@ -1,6 +1,6 @@
 <?php
 /**
- * Menu page for settings and fetch test.
+ * Menu page for import outbox.json
  *
  * @package daily-pleroma
  */
@@ -9,14 +9,14 @@ add_action(
 	'admin_menu',
 	function(){
 		add_submenu_page(
-			'options-general.php',
-			'Daily Pleroma',
-			'Daily Pleroma',
+			'tools.php',
+			'Import outbox',
+			'Import outbox',
 			'manage_options',
-			'daily_pleroma',
+			'import_outbox',
 			function(){
 				?>
-					<div class="wrap" id="daily-pleroma-settings">Loading</div>
+					<div class="wrap" id="daily-pleroma-import-outbox">Loading</div>
 				<?php
 			}
 		);
@@ -27,7 +27,7 @@ add_action(
 add_action(
 	'admin_enqueue_scripts',
 	function( $admin_page ){
-		if ( 'settings_page_daily_pleroma' !== $admin_page ) {
+		if ( 'tools_page_import_outbox' !== $admin_page ) {
 			return;
 		}
 
@@ -40,7 +40,7 @@ add_action(
 		$asset = include $asset_file;
 
 		wp_enqueue_script(
-			'daily-pleroma-settings',
+			'daily-pleroma-import-outbox',
 			plugins_url( 'build/index.js', __FILE__ ),
 			$asset['dependencies'],
 			$asset['version'],

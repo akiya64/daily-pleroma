@@ -4,9 +4,9 @@ import { useDispatch } from '@wordpress/data';
 import { useState } from '@wordpress/element';
 import { store as noticeStore } from "@wordpress/notices"
 import { __ } from '@wordpress/i18n';
-import { Notices } from '../Notices'
+import { Notices } from '../../libs/Notices'
 
-export const ImportPanel = () => {
+export const ImportForm = () => {
 	const [ jsonFile, setJsonFile ] = useState(undefined)
 	const { createErrorNotice, createSuccessNotice, removeAllNotices } = useDispatch( noticeStore )
 

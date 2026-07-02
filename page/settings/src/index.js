@@ -3,8 +3,6 @@ import { createRoot } from '@wordpress/element'
 import { __ } from '@wordpress/i18n'
 import { TabPanel } from '@wordpress/components'
 import { SettingsPanel } from './components/Tabs/SettingsPanel'
-import { ImportPanel } from './components/Tabs/ImportPanel'
-import { Notices } from './components/Notices'
 import { RssFetchPanel } from './components/Tabs/RssFetchPanel'
 
 const SettingsPage = () => {
@@ -22,10 +20,6 @@ const SettingsPage = () => {
 					{
 						name: 'checkRss',
 						title: __( 'Check RSS', 'daily-pleroma' )
-					},
-					{
-						name: 'import',
-						title: __( 'Import Json', 'daily-pleroma' )
 					}
 				]}
 			>
@@ -35,9 +29,6 @@ const SettingsPage = () => {
 					}
 					if( tab.name ==='checkRss' ){
 						return <RssFetchPanel />
-					}
-					if( tab.name === 'import' ){
-						return <ImportPanel />
 					}
 					return null
 				} }
