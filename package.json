@@ -4,8 +4,7 @@
     },
     "scripts": {
         "build": "wp-scripts build --webpack-copy-php",
-        "start:settings": "wp-scripts start --source-path=page/settings/src --output-path=page/settings/build",
-        "start:tools": "wp-scripts start --source-path=page/tools/src --output-path=page/tools/build"
+        "start": "wp-scripts start --webpack-copy-php"
     },
     "dependencies": {
         "@wordpress/api-fetch": "^7.48.0",

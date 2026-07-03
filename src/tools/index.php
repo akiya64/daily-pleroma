@@ -31,7 +31,7 @@ add_action(
 			return;
 		}
 
-		$asset_file = plugin_dir_path( __FILE__ ) . 'build/index.asset.php';
+		$asset_file = plugin_dir_path( __FILE__ ) . 'index.bundle.asset.php';
 
 		if ( ! file_exists( $asset_file ) ) {
 			return;
@@ -41,7 +41,7 @@ add_action(
 
 		wp_enqueue_script(
 			'daily-pleroma-import-outbox',
-			plugins_url( 'build/index.js', __FILE__ ),
+			plugins_url( 'index.bundle.js', __FILE__ ),
 			$asset['dependencies'],
 			$asset['version'],
 			array(
