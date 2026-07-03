@@ -3,7 +3,7 @@
         "@wordpress/scripts": "^32.4.0"
     },
     "scripts": {
-        "build": "wp-scripts build --source-path=page/src --output-path=page/build",
+        "build": "wp-scripts build --webpack-copy-php",
         "start:settings": "wp-scripts start --source-path=page/settings/src --output-path=page/settings/build",
         "start:tools": "wp-scripts start --source-path=page/tools/src --output-path=page/tools/build"
     },
