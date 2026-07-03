@@ -5,7 +5,7 @@ import { EstTimePicker } from '../EstTimePicker'
 import { RssUrlControl } from '../RssUrlControl'
 import { SaveButton } from '../SaveButton'
 import { useSettings } from '../../hooks/useSettings'
-import { Notices } from '../Notices'
+import { Notices } from '../../../../libs/Notices'
 
 export const SettingsPanel = () => {
 	const { settings, setSettings, saveSettings } = useSettings()
