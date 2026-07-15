@@ -26,7 +26,7 @@ export const RssFetchPanel = () => {
 				variant="primary"
 				onClick={ fetchRss }
 			>
-				{ __( 'RSS の読み込みテスト', 'daily-pleroma' ) }
+				{ __( 'Test read RSS from url', 'daily-pleroma' ) }
 			</Button>
 			<Result entries={ result } errorMessage={errorMessage} />
 		</div>

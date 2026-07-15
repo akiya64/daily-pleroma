@@ -15,7 +15,7 @@ export const AuthorSelector = ( { author, onChange }) => {
 
 	return (
 		<SelectControl
-			label={ __( 'ダイジェストの所有者', 'daily-preloma' ) }
+			label={ __( 'Digest post author', 'daily-preloma' ) }
 			value={ author }
 			onChange={ onChange }
 			options={ options }

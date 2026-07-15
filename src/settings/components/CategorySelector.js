@@ -15,7 +15,7 @@ export const CategorySelector = ( { cat, onChange }) => {
 
 	return (
 		<SelectControl
-			label={ __( 'ダイジェストのカテゴリー', 'daily-preloma' ) }
+			label={ __( 'Category for digest post', 'daily-preloma' ) }
 			value={ cat }
 			onChange={ onChange }
 			options={ options }

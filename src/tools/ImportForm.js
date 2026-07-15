@@ -16,7 +16,7 @@ export const ImportForm = () => {
 	}
 	const dropZoneText = jsonFile
 		? jsonFile.name
-		: __( 'outbox.json をここにドロップ', 'daily-pleroma' )
+		: __( 'Drop here outbox.json', 'daily-pleroma' )
 
 	const onClickHandle = () => {
 		const formData = new FormData()
@@ -60,7 +60,7 @@ export const ImportForm = () => {
 				onClick={ onClickHandle }
 				disabled={ jsonFile ? false : true }
 			>
-				アップロードしてダイジェストを投稿
+				{ __( 'Upload and post daily digest', 'daily-pleroma' ) }
 			</Button>
 			<Button
 				style={ { marginLeft: 32 } }
@@ -68,7 +68,7 @@ export const ImportForm = () => {
 				onClick={ () => setJsonFile(null)  }
 				disabled={ jsonFile ? false : true }
 			>
-				ファイルをクリア
+				{ __( 'Clear file', 'daily-pleroma' ) }
 			</Button>
 		</div>
 	)

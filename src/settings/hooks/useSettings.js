@@ -49,7 +49,7 @@ export const useSettings = () => {
 			}
 		} ).then( () => {
 			createSuccessNotice(
-				__( '設定を保存しました', 'daily-pleroma' )
+				__( 'Save completed', 'daily-pleroma' )
 			)
 		} )
 	}

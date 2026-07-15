@@ -15,8 +15,9 @@ add_action(
 			'manage_options',
 			'import_outbox',
 			function(){
+					$loading_message = __( 'Loading', 'daily-pleroma' );
 				?>
-					<div class="wrap" id="daily-pleroma-import-outbox">Loading</div>
+					<div class="wrap" id="daily-pleroma-import-outbox"><?php echo $loading_message; ?></div>
 				<?php
 			}
 		);

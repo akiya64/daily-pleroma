@@ -15,8 +15,9 @@ add_action(
 			'manage_options',
 			'daily_pleroma',
 			function(){
+					$loading_message = __( 'Loading', 'daily-pleroma' );
 				?>
-					<div class="wrap" id="daily-pleroma-settings">Loading</div>
+					<div class="wrap" id="daily-pleroma-settings"><?php echo $loading_message; ?></div>
 				<?php
 			}
 		);

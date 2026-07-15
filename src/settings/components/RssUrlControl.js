@@ -4,7 +4,7 @@ import { TextControl } from '@wordpress/components'
 export const RssUrlControl = ( { url, onChange } ) => {
 	return (
 		<TextControl
-			label={ __( 'rss の URL', 'daily-preloma' ) }
+			label={ __( 'RSS URL in Pleroma or Akkoma', 'daily-preloma' ) }
 			value={ url }
 			onChange={ onChange }
 		/>
