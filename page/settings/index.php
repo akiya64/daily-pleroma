@@ -49,6 +49,17 @@ add_action(
 				'in_footer' => true,
 			)
 		);
+
 		wp_enqueue_style( 'wp-components' );
+
+		wp_enqueue_style(
+			'daily-pleroma-settings-style',
+			plugins_url( 'index.css', __FILE__ ),
+			array_filter(
+				$asset['dependencies'],
+				fn ( $style ) => wp_style_is( $style, 'registered' )
+			),
+			$asset['version'],
+		);
 	}
 );

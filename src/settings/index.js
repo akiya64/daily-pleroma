@@ -4,6 +4,7 @@ import { __ } from '@wordpress/i18n'
 import { TabPanel } from '@wordpress/components'
 import { SettingsPanel } from './components/Tabs/SettingsPanel'
 import { RssFetchPanel } from './components/Tabs/RssFetchPanel'
+import './index.scss'
 
 const SettingsPage = () => {
 	return (

@@ -1,0 +1,10 @@
+#daily-pleroma-settings {
+  .components-base-control {
+    label {
+      text-transform: initial;
+    }
+    &:has(select) {
+      flex-basis: 400px;
+    }
+  }
+}
