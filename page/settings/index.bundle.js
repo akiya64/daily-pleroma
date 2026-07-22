@@ -289,7 +289,7 @@ const RssFetchPanel = () => {
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     style: {
-      paddingTop: 16
+      paddingTop: 32
     },
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
       __next40pxDefaultSize: true,
@@ -312,19 +312,23 @@ const Result = ({
     });
   } else if (entries.length > 0) {
     const day = new Date(entries[0].date);
-    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("p", {
+    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "rss-fetch-result",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("h3", {
         children: [day.getMonth() + 1, "\u6708", day.getDay(), "\u65E5\u306E\u30A8\u30F3\u30C8\u30EA\u30FC"]
-      }), entries.map(({
-        content,
-        url
-      }, index) => {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-          id: index,
-          dangerouslySetInnerHTML: {
-            __html: `${content} <a href="${url}">#</a>`
-          }
-        });
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: "rss-fetch-result__body",
+        children: entries.map(({
+          content,
+          url
+        }, index) => {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
+            id: index,
+            dangerouslySetInnerHTML: {
+              __html: `${content} <a href="${url}">#</a>`
+            }
+          });
+        })
       })]
     });
   } else {

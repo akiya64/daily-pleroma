@@ -16,5 +16,12 @@
   height: 38.5px;
   background: white;
 }
+#daily-pleroma-settings .rss-fetch-result {
+  max-width: 600px;
+  margin-top: 32px;
+}
+#daily-pleroma-settings .rss-fetch-result__body p {
+  font-size: 14px;
+}
 
 /*# sourceMappingURL=index.css.map*/

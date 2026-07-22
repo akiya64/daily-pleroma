@@ -20,7 +20,7 @@ export const RssFetchPanel = () => {
 	}
 
 	return (
-		<div style={{ paddingTop: 16 }}>
+		<div style={{ paddingTop: 32 }}>
 			<Button
 				__next40pxDefaultSize
 				variant="primary"
@@ -40,8 +40,9 @@ const Result = ( { entries, errorMessage } ) => {
 	} else if( entries.length > 0 ){
 		const day = new Date( entries[0].date )
 		return (
-			<>
-				<p>{day.getMonth() + 1}月{day.getDay()}日のエントリー</p>
+			<div className='rss-fetch-result'>
+				<h3>{day.getMonth() + 1}月{day.getDay()}日のエントリー</h3>
+				<div className='rss-fetch-result__body'>
 				{ entries.map( ( { content, url }, index ) => {
 						return (
 							<p id={ index } dangerouslySetInnerHTML={
@@ -50,7 +51,8 @@ const Result = ( { entries, errorMessage } ) => {
 					)
 					} )
 				}
-			</>
+				</div>
+			</div>
 		)
 	} else {
 		return null

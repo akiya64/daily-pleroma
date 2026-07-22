@@ -17,4 +17,13 @@
       background: white;
     }
   }
+
+  .rss-fetch-result {
+    max-width: 600px;
+    margin-top: 32px;
+
+    &__body p {
+      font-size: 14px;
+    }
+  }
 }
