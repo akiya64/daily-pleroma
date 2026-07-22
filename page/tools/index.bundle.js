@@ -105,11 +105,13 @@ const ImportForm = () => {
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
     style: {
-      marginTop: 16
+      marginTop: 16,
+      maxWidth: 600
     },
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_libs_Notices__WEBPACK_IMPORTED_MODULE_6__.Notices, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
       style: {
         background: jsonFile ? 'white' : 'gainsboro',
+        fontSize: 16,
         padding: 32,
         marginTop: 16,
         marginBottom: 16,

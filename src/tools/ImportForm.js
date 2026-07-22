@@ -39,11 +39,12 @@ export const ImportForm = () => {
 	}
 
 	return (
-		<div style={{ marginTop: 16 }}>
+		<div style={{ marginTop: 16, maxWidth: 600 }}>
 			<Notices />
 
 			<div style={{
 				background: jsonFile ? 'white' : 'gainsboro',
+				fontSize: 16,
 				padding: 32,
 				marginTop: 16,
 				marginBottom: 16,
