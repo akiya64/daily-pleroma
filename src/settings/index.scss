@@ -1,10 +1,20 @@
 #daily-pleroma-settings {
   .components-base-control {
-    label {
+    max-width: 400px;
+    margin-bottom: 16px;
+
+    label, &__label {
+      font-size: 14px;
       text-transform: initial;
     }
-    &:has(select) {
-      flex-basis: 400px;
+
+    .components-input-control__container {
+      max-width: 240px;
+    }
+
+    .components-datetime__time-separator {
+      height: 38.5px;
+      background: white;
     }
   }
 }
