@@ -8,6 +8,7 @@
 function parse_pleroma_atom( $url ){
 	$atom = new SimpleXMLElement( $url, LIBXML_COMPACT | LIBXML_NOERROR, true );
 
+	$items = array();
 	foreach( $atom->entry as $entry ){
 		$date = new DateTime( $entry->published );
 		$date->setTimeZone( wp_timezone() );
@@ -32,6 +33,7 @@ function parse_pleroma_atom( $url ){
 function parse_outbox_json( $json ){
 	$outbox = json_decode( $json );
 	$collection = $outbox->orderedItems;
+	$items = array();
 
 	foreach( $collection as $item ){
 		$item = $item->object;

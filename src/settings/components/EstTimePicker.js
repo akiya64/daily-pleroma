@@ -1,0 +1,14 @@
+import { __ } from '@wordpress/i18n'
+import { TimePicker } from '@wordpress/components'
+
+export const EstTimePicker = ( { est, onChange } ) => {
+	return (
+		<div className='components-base-control'>
+			<TimePicker.TimeInput
+				label={ __( 'Time to post digest', 'daily-preloma' ) }
+				value={ est }
+				onChange={ onChange }
+			/>
+		</div>
+	)
+}

@@ -1,0 +1,29 @@
+#daily-pleroma-settings {
+  .components-base-control {
+    max-width: 400px;
+    margin-bottom: 16px;
+
+    label, &__label {
+      font-size: 14px;
+      text-transform: initial;
+    }
+
+    .components-input-control__container {
+      max-width: 240px;
+    }
+
+    .components-datetime__time-separator {
+      height: 38.5px;
+      background: white;
+    }
+  }
+
+  .rss-fetch-result {
+    max-width: 600px;
+    margin-top: 32px;
+
+    &__body p {
+      font-size: 14px;
+    }
+  }
+}
