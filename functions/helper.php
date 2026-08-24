@@ -7,7 +7,7 @@
 
 function exists_digest_post( DateTime $date ){
 	$posts = get_posts( array(
-		'category' => get_option( 'digest_cat' ),
+		'category' => get_option( 'daily_pleroma_settings' )['digest_cat'] ?? '',
 		'date_query' => array(array (
 			'year' => $date->format('Y'),
 			'month' => $date->format('m'),

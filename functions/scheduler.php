@@ -10,7 +10,7 @@ function insert_yesterday_digest(){
 	$today = new DateTime( 'now', wp_timezone() );
 	if( exists_digest_post( $today ) ) return;
 
-	$all_items = parse_pleroma_atom( get_option( 'rss_url') );
+	$all_items = parse_pleroma_atom( get_option( 'daily_pleroma_settings' )['rss_url'] );
 	wp_insert_post( build_daily_digest_post( $yesterday, $all_items ) );
 };
 

@@ -7,7 +7,7 @@
 
 function build_daily_digest_post( DateTime $date, $all_items = array() ) {
 	if( ! $all_items ){
-		$all_items = parse_pleroma_atom( get_option( 'rss_url' ) );
+		return;
 	}
 
 	$items = slice_items( $all_items, $date );
@@ -25,6 +25,7 @@ function build_daily_digest_post( DateTime $date, $all_items = array() ) {
 			EOF;
 	}
 
+	$settings = get_option( 'daily_pleroma_settings' );
 	$date_string = $date->format( 'Y-m-d' );
 
 	return array(
@@ -32,7 +33,7 @@ function build_daily_digest_post( DateTime $date, $all_items = array() ) {
 		'post_title' => 'From akkoma ' . $date_string,
 		'post_content' => $main_content,
 		'post_status' => 'publish',
-		'post_author' => get_option( 'digest_author' ) ?? '',
-		'post_category' => array( get_option( 'digest_category' ) ?? '' ),
+		'post_author' => $settings['digest_author'] ?? '',
+		'post_category' => array( $settings['digest_category'] ),
 	);
 }
