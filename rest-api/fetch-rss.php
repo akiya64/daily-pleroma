@@ -29,6 +29,7 @@ add_action(
 				);
 			}
 
+			// entry が出てくるまで日付を遡る.
 			$days_ago = -1;
 			do {
 				$yesterday  = new DateTime( $days_ago . 'day', wp_timezone() );
