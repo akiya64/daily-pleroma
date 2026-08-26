@@ -13,6 +13,7 @@
 require_once __DIR__ . '/functions/build-post.php';
 require_once __DIR__ . '/functions/helper.php';
 require_once __DIR__ . '/functions/parser.php';
+require_once __DIR__ . '/functions/post-digest.php';
 require_once __DIR__ . '/functions/register-settings.php';
 require_once __DIR__ . '/functions/scheduler.php';
 

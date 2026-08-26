@@ -5,7 +5,7 @@
  * @package daily-pleroma
  */
 
-function build_daily_digest_post( DateTime $date, $all_items = array() ) {
+function build_daily_digest_post( DateTime|DateTimeImmutable $date, $all_items = array() ) {
 	if( ! $all_items ){
 		return;
 	}

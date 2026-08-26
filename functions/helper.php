@@ -5,7 +5,7 @@
  * @package daily-pleroma
  */
 
-function exists_digest_post( DateTime $date ){
+function exists_digest_post( DateTime|DateTimeImmutable $date ){
 	$posts = get_posts( array(
 		'category' => get_option( 'daily_pleroma_settings' )['digest_cat'] ?? '',
 		'date_query' => array(array (
@@ -18,7 +18,7 @@ function exists_digest_post( DateTime $date ){
 	return $posts ? true : false;
 }
 
-function slice_items( array $all_items, DateTime $date, ){
+function slice_items( array $all_items, DateTime|DateTimeImmutable $date, ){
 	if( ! $all_items ){
 		return;
 	}
