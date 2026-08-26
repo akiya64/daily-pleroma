@@ -18,6 +18,7 @@ require_once __DIR__ . '/functions/scheduler.php';
 
 require_once __DIR__ . '/rest-api/fetch-rss.php';
 require_once __DIR__ . '/rest-api/import-json.php';
+require_once __DIR__ . '/rest-api/post-digest.php';
 
 require_once __DIR__ . '/page/settings/index.php';
 require_once __DIR__ . '/page/tools/index.php';

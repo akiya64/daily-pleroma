@@ -6,6 +6,7 @@ import { RssUrlControl } from '../RssUrlControl'
 import { SaveButton } from '../SaveButton'
 import { useSettings } from '../../hooks/useSettings'
 import { Notices } from '../../../libs/Notices'
+import { PostDigestButton } from '../PostDigestButton'
 
 export const SettingsPanel = () => {
 	const { settings, setSettings, saveSettings } = useSettings()
@@ -32,6 +33,7 @@ export const SettingsPanel = () => {
 			<SaveButton
 				onClick={ saveSettings }
 			/>
+			<PostDigestButton />
 		</div>
 	)
 }

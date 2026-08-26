@@ -184,6 +184,65 @@ const EstTimePicker = ({
 
 /***/ },
 
+/***/ "./src/settings/components/PostDigestButton.js"
+/*!*****************************************************!*\
+  !*** ./src/settings/components/PostDigestButton.js ***!
+  \*****************************************************/
+(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   PostDigestButton: () => (/* binding */ PostDigestButton)
+/* harmony export */ });
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @wordpress/i18n */ "@wordpress/i18n");
+/* harmony import */ var _wordpress_i18n__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @wordpress/components */ "@wordpress/components");
+/* harmony import */ var _wordpress_components__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @wordpress/data */ "@wordpress/data");
+/* harmony import */ var _wordpress_data__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_wordpress_data__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _hooks_useSettings__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../hooks/useSettings */ "./src/settings/hooks/useSettings.js");
+/* harmony import */ var _wordpress_notices__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @wordpress/notices */ "@wordpress/notices");
+/* harmony import */ var _wordpress_notices__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_wordpress_notices__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @wordpress/api-fetch */ "@wordpress/api-fetch");
+/* harmony import */ var _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5__);
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__);
+
+
+
+
+
+
+
+const PostDigestButton = () => {
+  const {
+    saveSettings
+  } = (0,_hooks_useSettings__WEBPACK_IMPORTED_MODULE_3__.useSettings)();
+  const {
+    createSuccessNotice,
+    createErrorNotice
+  } = (0,_wordpress_data__WEBPACK_IMPORTED_MODULE_2__.useDispatch)(_wordpress_notices__WEBPACK_IMPORTED_MODULE_4__.store);
+  const onClickHandle = () => {
+    saveSettings();
+    _wordpress_api_fetch__WEBPACK_IMPORTED_MODULE_5___default()({
+      path: '/daily-pleroma/v1/post-digest',
+      'method': 'POST'
+    }).then(result => {
+      createSuccessNotice(result);
+    }).catch(error => {
+      createErrorNotice(error.message);
+    });
+  };
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
+    variant: "primary",
+    onClick: onClickHandle,
+    __next40pxDefaultSize: true,
+    children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Post digest now', 'daily-pleroma')
+  });
+};
+
+/***/ },
+
 /***/ "./src/settings/components/RssUrlControl.js"
 /*!**************************************************!*\
   !*** ./src/settings/components/RssUrlControl.js ***!
@@ -357,8 +416,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _SaveButton__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../SaveButton */ "./src/settings/components/SaveButton.js");
 /* harmony import */ var _hooks_useSettings__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../hooks/useSettings */ "./src/settings/hooks/useSettings.js");
 /* harmony import */ var _libs_Notices__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../../libs/Notices */ "./src/libs/Notices.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _PostDigestButton__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../PostDigestButton */ "./src/settings/components/PostDigestButton.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! react/jsx-runtime */ "react/jsx-runtime");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9___default = /*#__PURE__*/__webpack_require__.n(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__);
+
 
 
 
@@ -380,33 +441,33 @@ const SettingsPanel = () => {
     digestCategory,
     estDailyPost
   } = settings;
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsxs)("div", {
     style: {
       paddingTop: 16
     },
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_libs_Notices__WEBPACK_IMPORTED_MODULE_7__.Notices, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_RssUrlControl__WEBPACK_IMPORTED_MODULE_4__.RssUrlControl, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_libs_Notices__WEBPACK_IMPORTED_MODULE_7__.Notices, {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_RssUrlControl__WEBPACK_IMPORTED_MODULE_4__.RssUrlControl, {
       url: rssUrl,
       onChange: v => setSettings({
         rssUrl: v
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_AuthorSelector__WEBPACK_IMPORTED_MODULE_1__.AuthorSelector, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_AuthorSelector__WEBPACK_IMPORTED_MODULE_1__.AuthorSelector, {
       author: digestAuthor,
       onChange: v => setSettings({
         digestAuthor: v
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_CategorySelector__WEBPACK_IMPORTED_MODULE_2__.CategorySelector, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_CategorySelector__WEBPACK_IMPORTED_MODULE_2__.CategorySelector, {
       cat: digestCategory,
       onChange: v => setSettings({
         digestCategory: v
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_EstTimePicker__WEBPACK_IMPORTED_MODULE_3__.EstTimePicker, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_EstTimePicker__WEBPACK_IMPORTED_MODULE_3__.EstTimePicker, {
       est: estDailyPost,
       onChange: v => setSettings({
         estDailyPost: v
       })
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_SaveButton__WEBPACK_IMPORTED_MODULE_5__.SaveButton, {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_SaveButton__WEBPACK_IMPORTED_MODULE_5__.SaveButton, {
       onClick: saveSettings
-    })]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_9__.jsx)(_PostDigestButton__WEBPACK_IMPORTED_MODULE_8__.PostDigestButton, {})]
   });
 };
 
