@@ -15,8 +15,8 @@ function post_digest_entire_period( array $all_items ){
 
 	$count = 0;
 
-	foreach( $period as $tmp ){
-		$current = DateTimeImmutable::createFromMutable( $tmp );
+	foreach( $period as $current ){
+		$current = DateTimeImmutable::createFromMutable( $current );
 		$estimated_publish_day = $current->modify( '+1 day' );
 		if( exists_digest_post( $estimated_publish_day ) ) {
 			continue;
