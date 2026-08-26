@@ -24,7 +24,8 @@ export const PostDigestButton = () => {
 	}
 
 	return (
-		<Button variant="primary" onClick={ onClickHandle } __next40pxDefaultSize>
+		<Button variant="secondary" onClick={ onClickHandle } __next40pxDefaultSize style={{ marginLeft: 48 }}
+>
 			{ __( 'Post digest now', 'daily-pleroma' ) }
 		</Button>
 	);

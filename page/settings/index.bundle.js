@@ -234,9 +234,12 @@ const PostDigestButton = () => {
     });
   };
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_1__.Button, {
-    variant: "primary",
+    variant: "secondary",
     onClick: onClickHandle,
     __next40pxDefaultSize: true,
+    style: {
+      marginLeft: 48
+    },
     children: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Post digest now', 'daily-pleroma')
   });
 };
