@@ -6,17 +6,20 @@ function post_digest_entire_period( array $all_items ){
 
 	$first = min( array_keys( $all_items ) );
 	$since = new DateTime( $first, wp_timezone() );
+	$since->setTime(0,0,0);
 
 	$last = max( array_keys( $all_items ) );
 	$until = new DateTime( $last, wp_timezone() );
+	$until->setTime(0,0,0);
 
 	$interval = DateInterval::createFromDateString( '1 day' );
-	$period = new DatePeriod( $since, $interval, $until );
+	$period = new DatePeriod( $since, $interval, $until, DatePeriod::INCLUDE_END_DATE );
 
 	$count = 0;
 
 	foreach( $period as $current ){
 		$current = DateTimeImmutable::createFromMutable( $current );
+
 		$estimated_publish_day = $current->modify( '+1 day' );
 		if( exists_digest_post( $estimated_publish_day ) ) {
 			continue;
