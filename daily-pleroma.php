@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Daily pleroma
  * Description: Post daily digest from pleroma / akkoma instance via RSS feed.
- * Version:     0.10.0
+ * Version:     0.10.1
  * Author: Akiya
  * Author URI:  https://code.autumunsky.jp/akiya/
  * TextDomain:  daily-pleroma

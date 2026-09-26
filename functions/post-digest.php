@@ -32,9 +32,10 @@ function post_digest_entire_period( array $all_items ){
 		}
 
 		error_log(print_r($post_arr,true));
-		//if( wp_insert_post( $post_arr ) ){
-		//	$count++;
-		//}
+
+		if( wp_insert_post( $post_arr ) ){
+			$count++;
+		}
 	}
 
 	$day = $since->format('Y-m-d') . ' - ' . $until->format('Y-m-d');
