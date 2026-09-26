@@ -31,8 +31,6 @@ function post_digest_entire_period( array $all_items ){
 			continue;
 		}
 
-		$post_arr["post_date"] = $estimated_publish_day->format( 'Y-m-d' ) . ' 02:00:00';
-
 		error_log(print_r($post_arr,true));
 		//if( wp_insert_post( $post_arr ) ){
 		//	$count++;

@@ -26,14 +26,17 @@ function build_daily_digest_post( DateTime|DateTimeImmutable $date, $all_items =
 	}
 
 	$settings = get_option( 'daily_pleroma_settings' );
-	$date_string = $date->format( 'Y-m-d' );
+
+	[ $hour, $min ] = explode( ":", $settings['est_daily_post'] );
+	$estimated_publish = $date->modify( '+1 day' )->setTime( $hour, $min );
 
 	return array(
-		'post_name' => 'from_akkoma_' . $date_string,
-		'post_title' => 'From akkoma ' . $date_string,
-		'post_content' => $main_content,
-		'post_status' => 'publish',
-		'post_author' => $settings['digest_author'] ?? '',
+		'post_name'     => 'from_akkoma_' . $date->format( 'Y-m-d' ),
+		'post_title'    => 'From akkoma ' . $date->format( 'Y-m-d' ),
+		'post_content'  => $main_content,
+		'post_status'   => 'publish',
+		'post_author'   => $settings['digest_author'] ?? '',
 		'post_category' => array( $settings['digest_category'] ),
+		'post_date'     => $estimated_publish->format( 'Y-m-d H:i:s' )
 	);
 }
