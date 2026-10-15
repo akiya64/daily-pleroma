@@ -17,29 +17,38 @@ function insert_yesterday_digest(){
 
 add_action( 'insert_yesterday_digest_hook', 'insert_yesterday_digest' );
 
+function schedule_daily_insert_event( array $_option, array $value ){
+	$next = wp_get_scheduled_event( 'insert_yesterday_digest_hook' );
+
+	if( $next ){
+		wp_unschedule_hook( 'insert_yesterday_digest_hook' );
+	}
+
+	$est = date_create_from_format( 'H:i', $value['est_daily_post'], wp_timezone() );
+	$est->setTimezone( new DateTimeZone('UTC'));
+
+	$now = new DateTime( 'now' );
+	$now->setTimezone( new DateTimeZone('UTC'));
+
+	if( $est < $now ){
+		$est->modify( '+1 day' );
+	}
+
+	wp_schedule_event( $est->getTimestamp(), 'daily', 'insert_yesterday_digest_hook' );
+}
+
+add_action(
+	'add_option_daily_pleroma_settings',
+	'schedule_daily_insert_event',
+	10,
+	2
+);
+
 add_action(
 	'update_option_daily_pleroma_settings',
-	function( $_old, $new){
-		$next = wp_get_scheduled_event( 'insert_yesterday_digest_hook' );
-
-		if( $next ){
-			wp_unschedule_hook( 'insert_yesterday_digest_hook' );
-		}
-
-		$est = date_create_from_format( 'H:i', $new['est_daily_post'], wp_timezone() );
-		$est->setTimezone( new DateTimeZone('UTC'));
-
-		$now = new DateTime( 'now' );
-		$now->setTimezone( new DateTimeZone('UTC'));
-
-		if( $est < $now ){
-			$est->modify( '+1 day' );
-		}
-
-		wp_schedule_event( $est->getTimestamp(), 'daily', 'insert_yesterday_digest_hook' );
-	},
+	'schedule_daily_insert_event',
 	10,
-	3
+	2
 );
 
 add_action(
