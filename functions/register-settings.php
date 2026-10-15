@@ -34,7 +34,7 @@ add_action(
 		);
 
 		register_setting(
-			'daily_pleroma',
+			'options',
 			'daily_pleroma_settings',
 			array(
 				'type'         => 'object',
